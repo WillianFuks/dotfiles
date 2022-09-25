@@ -32,8 +32,9 @@ nnoremap('B', '^', 'Moves to the beginning of first non-empty character in row')
 vnoremap('B', '^')
 nnoremap('E', '$', 'Moves to the end of row')
 vnoremap('E','$')
-nnoremap('dB', 'd^x', 'Deletes until beginning of line')
-nnoremap('dB', 'd^x', 'Moves to the beginning of first non-empty character in row')
+nnoremap('dB', 'd^', 'Delete until beginning of line')
+vnoremap('dB', 'd^')
+
 
 nnoremap('zl', 'zL', 'Jump cursor to the right')
 vnoremap('zl', 'zL', 'Jump cursor to the right')

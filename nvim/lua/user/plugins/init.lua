@@ -10,10 +10,10 @@ local init_opts = {
   compile_path = compile_path,
   snapshot_path = snapshot_path,
   max_jobs = 100,
-  log = { level = "warn" },
+  log = { level = 'warn' },
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "rounded" }
+      return require('packer.util').float { border = 'rounded' }
     end,
   },
 }
@@ -45,37 +45,69 @@ packer.reset()
 packer.startup({ function(use)
     use 'wbthomason/packer.nvim'
 
-    use { "nvim-lua/popup.nvim" }
-    use "nvim-lua/plenary.nvim"
-    use 'marko-cerovac/material.nvim'
+    use { 'nvim-lua/popup.nvim' }
+    use { 'nvim-lua/plenary.nvim' }
+    use {
+        'rcarriga/nvim-notify',
+        config = function() require 'user.plugins.notify' end,
+        requires = { "nvim-telescope/telescope.nvim" }
+    }
+
+    use {
+      "nvim-telescope/telescope.nvim",
+      --branch = "0.1.x",
+      config = function() require 'user.plugins.telescope' end
+    }
+    use {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      requires = { "nvim-telescope/telescope.nvim" },
+      run = "make"
+    }
+    use  {
+        "kyazdani42/nvim-tree.lua",
+        requires = {  'kyazdani42/nvim-web-devicons' },
+        config = function() require 'user.plugins.nvimtree' end
+    }
+    use { "kyazdani42/nvim-web-devicons", requires = { {'nvim-lua/plenary.nvim'} } }
+
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+        config = function() require 'user.plugins.treesitter' end
+    }
+
+    use { 'marko-cerovac/material.nvim', config = function() require 'user.plugins.colorscheme' end }
+    use 'projekt0n/github-nvim-theme'
 
     -- cmp related
-   -- use 'neovim/nvim-lspconfig'
-	use({ 
-        "hrsh7th/nvim-cmp",
-        requires = { "L3MON4D3/LuaSnip" }
-    }) -- The completion plugin
-	use({ "hrsh7th/cmp-buffer" }) -- buffer completions
-	use({ "hrsh7th/cmp-path" }) -- path completions
-    use 'hrsh7th/cmp-cmdline'
-	use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
-	use({ "hrsh7th/cmp-nvim-lsp" })
-	use({ "hrsh7th/cmp-nvim-lua" })
-
-    -- For vsnip users.
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/vim-vsnip'
+	use { 'hrsh7th/nvim-cmp', requires = { 'L3MON4D3/LuaSnip' } , config = function() require 'user.plugins.cmp' end}
+	use { 'hrsh7th/cmp-buffer' }
+	use { 'hrsh7th/cmp-path' }
+    use { 'hrsh7th/cmp-cmdline' }
+	use { 'saadparwaiz1/cmp_luasnip' }
+	use { 'hrsh7th/cmp-nvim-lsp' }
+	use { 'hrsh7th/cmp-nvim-lua' }
+    use { 'David-Kunz/cmp-npm', requires = { 'nvim-lua/plenary.nvim' } }
 
 	-- snippets
-	use({
-        "L3MON4D3/LuaSnip",
+	use {
+        'L3MON4D3/LuaSnip',
         config = function()
-            require("luasnip.loaders.from_lua").lazy_load()
-            require("luasnip.loaders.from_vscode").lazy_load()
-            require("luasnip.loaders.from_snipmate").lazy_load()
+            require('luasnip.loaders.from_lua').lazy_load()
+            require('luasnip.loaders.from_vscode').lazy_load()
+            require('luasnip.loaders.from_snipmate').lazy_load()
         end
-    }) --snippet engine
-	use({ "rafamadriz/friendly-snippets" }) -- a bunch of snippets to use
+    }
+	use { 'rafamadriz/friendly-snippets' }
+
+    -- lsp
+    use { 'neovim/nvim-lspconfig' }
+    use { 'tamago324/nlsp-settings.nvim' }
+    use { 'jose-elias-alvarez/null-ls.nvim' }
+    use { 'williamboman/mason.nvim', config = function() require('user.plugins.mason') end }
+    use { 'williamboman/mason-lspconfig.nvim' }
+
+    --use { "nvim-treesitter/nvim-treesitter", config = function() require("user.plugins.treesitter").setup() end }
 
     packer.on_complete = vim.schedule_wrap(function()
         require('user.hooks').on_packer_completed()
@@ -85,6 +117,3 @@ packer.startup({ function(use)
 
     end
 })
-
-require('user.plugins.colorscheme')
-require('user.plugins.cmp')

@@ -135,6 +135,7 @@ local source_names = {
       luasnip = "(Snippet)",
       buffer = "(Buffer)",
       tmux = "(TMUX)",
+      npm = "(NPM)"
 }
 
 local duplicates = {
@@ -149,6 +150,9 @@ local confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
 }
+
+
+require('cmp-npm').setup({})
 
 cmp.setup({
   confirm_opts = confirm_opts,
@@ -198,6 +202,7 @@ cmp.setup({
     { name = "treesitter" },
     { name = "crates" },
     { name = "tmux" },
+    { name = "npm", keyword_length = 2 },
   },
   mapping = cmp.mapping.preset.insert {
     ["<C-k>"] = cmp.mapping.select_prev_item(),

@@ -1,3 +1,5 @@
+require('user.disable_builtins')
+
 vim.defer_fn(function()
     pcall(require, "impatient")
 end, 0)
@@ -9,11 +11,9 @@ if _G._is_reload then
 	_G._is_reload = false -- avoids reloading without directly requesting it
 end
 
-require('user.disable_builtins')
 require('user.options')
 require('user.mappings')
 require('user.plugins')
-require('user.plugins.colorscheme')
-require('user.plugins.cmp')
+require('user.autocmds')
 
 _G._is_reload = false -- Only the command map sets this value to true once
