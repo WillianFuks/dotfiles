@@ -32,9 +32,6 @@ nnoremap('B', '^', 'Moves to the beginning of first non-empty character in row')
 vnoremap('B', '^')
 nnoremap('E', '$', 'Moves to the end of row')
 vnoremap('E','$')
-nnoremap('dB', 'd^', 'Delete until beginning of line')
-vnoremap('dB', 'd^')
-
 
 nnoremap('zl', 'zL', 'Jump cursor to the right')
 vnoremap('zl', 'zL', 'Jump cursor to the right')
@@ -78,8 +75,6 @@ vnoremap('>', '>gv', 'Push selected lines to the right indentation')
 
 cnoremap('<C-j>', 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', 'Navigate tab completion in command mode')
 cnoremap('<C-k>', 'pumvisible() ? "\\<C-p>" : "\\<C-k>"')
-
-nnoremap('<leader>e', ':Lex 30<CR>')
 
 nnoremap('<C-d>', '<C-d>zz')
 nnoremap('<C-u>', '<C-u>zz')

@@ -75,6 +75,27 @@ packer.startup({ function(use)
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
         config = function() require 'user.plugins.treesitter' end
     }
+    use {
+        'nvim-treesitter/nvim-treesitter-refactor',
+        requires = { 'nvim-treesitter/nvim-treesitter' },
+    }
+    use {
+        'p00f/nvim-ts-rainbow',
+        requires = { 'nvim-treesitter/nvim-treesitter' },
+        --run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    }
+    use {
+        'JoosepAlviste/nvim-ts-context-commentstring',
+        requires = { 'nvim-treesitter/nvim-treesitter' , 'numToStr/Comment.nvim' },
+    }
+    use {
+        'numToStr/Comment.nvim',
+        config = function() require('user.plugins.Comment') end
+    }
+    use {
+        'andymass/vim-matchup',
+        requires = { 'nvim-treesitter/nvim-treesitter' },
+    }
 
     use { 'marko-cerovac/material.nvim', config = function() require 'user.plugins.colorscheme' end }
     use 'projekt0n/github-nvim-theme'
@@ -107,7 +128,11 @@ packer.startup({ function(use)
     use { 'williamboman/mason.nvim', config = function() require('user.plugins.mason') end }
     use { 'williamboman/mason-lspconfig.nvim' }
 
-    --use { "nvim-treesitter/nvim-treesitter", config = function() require("user.plugins.treesitter").setup() end }
+
+--    use {
+--      "folke/twilight.nvim",
+--      config = function() require('user.plugins.twilight') end
+--    }
 
     packer.on_complete = vim.schedule_wrap(function()
         require('user.hooks').on_packer_completed()

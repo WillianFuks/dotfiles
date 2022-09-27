@@ -7,8 +7,8 @@ end, 0)
 local reload = require('user.utils').reload
 
 if _G._is_reload then
-	reload('user')
-	_G._is_reload = false -- avoids reloading without directly requesting it
+  reload('user')
+  _G._is_reload = false -- avoids reloading without directly requesting it
 end
 
 require('user.options')

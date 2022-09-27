@@ -52,26 +52,26 @@ local config = {
   defaults = {
     prompt_prefix = " ",
     selection_caret = " ",
-    initial_mode = "normal",
+    initial_mode = "insert",
     selection_strategy = "reset",
     sorting_strategy = "descending",
     scroll_strategy = "limit",
     dynamic_preview_title = true,
     layout_strategy = "horizontal",
-    --layout_config = {
-    --  width = 0.75,
-    --  preview_cutoff = 120,
-    --  horizontal = {
-    --    preview_width = function(_, cols, _)
-    --      if cols < 120 then
-    --        return math.floor(cols * 0.5)
-    --      end
-    --      return math.floor(cols * 0.6)
-    --    end,
-    --    mirror = false,
-    --  },
-    --  vertical = { mirror = false },
-    --},
+    layout_config = {
+      width = 0.75,
+      preview_cutoff = 120,
+      horizontal = {
+        preview_width = function(_, cols, _)
+          if cols < 120 then
+            return math.floor(cols * 0.5)
+          end
+          return math.floor(cols * 0.6)
+        end,
+        mirror = false,
+      },
+      vertical = { mirror = false },
+    },
     vimgrep_arguments = {
       "rg",
       "--color=never",
@@ -104,9 +104,6 @@ local config = {
     --pickers = pickers,
     file_ignore_patterns = { 'node_modules', '\\.pyc' },
     path_display = { 'absolute' },
-    --winblend = 0,
-    --border = {},
-    --borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     color_devicons = true,
     set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
   },
@@ -140,7 +137,7 @@ if config.extensions and config.extensions.fzf then
     telescope.load_extension "fzf"
 end
 
-nnoremap('<leader>f', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], 'Find Files Picker')
+nnoremap('<C-f>', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], 'Find Files Picker')
 nnoremap('<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<cr>]], 'Grep words on files')
 nnoremap('<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<cr>]], '')
 nnoremap('<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], '')
