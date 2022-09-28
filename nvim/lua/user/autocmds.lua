@@ -1,5 +1,6 @@
 --https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation
 local group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {})
+local group_ws = vim.api.nvim_create_augroup('WhitespaceTrails', {})
 vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
   group=group,
   callback = function()
@@ -11,7 +12,8 @@ vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEn
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  group=group_ws,
   pattern = { "*" },
   command = [[%s/\s\+$//e]],
-  desc='Automatically removes trailing white spaces'
+  desc='Automatically removes trailing whitespaces'
 })

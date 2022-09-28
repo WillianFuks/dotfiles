@@ -7,6 +7,9 @@ local config = {
     disable_virtual_text = true,
     include_match_words = false,
   },
+  autopairs = {
+    enable = false
+  },
   highlight = {
     enable = true, -- false will disable the whole extension
     additional_vim_regex_highlighting = false,
@@ -42,26 +45,17 @@ local config = {
     max_file_lines = nil, -- Do not enable for files with more than 1000 lines, int
   },
   refactor = {
+    highlight_current_scope = { enable = false },
     highlight_definitions = {
       enable = false,
-      highlight_current_scope = { enable = true },
-      smart_rename = {
-        enable = true,
-        keymaps = {
-          smart_rename = "grr",
-        },
+      clear_on_cursor_move = true
+    },
+    smart_rename = {
+      enable = false,
+      keymaps = {
+        smart_rename = "grr",
       },
-      navigation = {
-        enable = true,
-        keymaps = {
-          goto_definition_lsp_fallback = "gtd",
-          list_definitions = "gtD",
-          list_definitions_toc = "gtO",
-          goto_next_usage = "<C-*>",
-          goto_previous_usage = "<C-#>",
-        },
-      },
-    }
+    },
   },
 }
 
