@@ -22,7 +22,8 @@ require(colorscheme).setup({
     contrast_filetypes = { -- Specify which filetypes get the contrasted (darker) background
         "terminal", -- Darker terminal background
         "packer", -- Darker packer background
-        "qf" -- Darker qf list background
+        "qf", -- Darker qf list background
+        'toggleterm'
     },
 
     high_visibility = {
@@ -39,11 +40,8 @@ require(colorscheme).setup({
     },
 
     lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
-
     async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
-
     custom_highlights = {}, -- Overwrite highlights with your own
-
     plugins = { -- Here, you can disable(set to false) plugins that you don't use or don't want to apply the theme to
         trouble = true,
         nvim_cmp = true,
@@ -62,6 +60,7 @@ require(colorscheme).setup({
         indent_blankline = true,
         nvim_illuminate = true,
         mini = true,
+        toggleterm = false
     }
 })
 

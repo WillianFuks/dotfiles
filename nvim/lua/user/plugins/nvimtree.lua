@@ -2,6 +2,13 @@ local nvim_tree_config = require 'nvim-tree.config'
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
+local function open_and_refocus(node)
+    print(node)
+	local nt_api = require("nvim-tree.api")
+	nt_api.node.open.edit(node)
+	nt_api.tree.focus()
+end
+
 local config = {
   setup = {
     ignore_ft_on_setup = {
@@ -30,7 +37,8 @@ local config = {
     view = {
       mappings = {
         list = {
-          { key = { 'l', '<CR>', 'o' }, action = 'edit' },
+          { key = { '<CR>', 'o' }, action = 'edit' },
+          { key = { 'l' }, action = 'open_and_refocus', action_cb = open_and_refocus },
           { key = 'v', action = 'vsplit' },
           { key = 'h', cb = tree_cb 'close_node' },
           { key = 'C', action = 'cd' },

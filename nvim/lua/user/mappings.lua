@@ -2,7 +2,6 @@ local default_opts = { noremap = true, silent = true }
 
 local function partial(mode, opts)
 	opts = opts or default_opts
-	print("this is opts: ", vim.pretty_print(opts))
 	return function(lhs, rhs, desc)
 		opts['desc'] = desc or ''
 		vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
@@ -43,7 +42,7 @@ nnoremap('<C-K>', '<C-W><C-K>', 'Jump to window above')
 nnoremap('<C-L>', '<C-W><C-L>', 'Jump to window to the right')
 nnoremap('<C-H>', '<C-W><C-H>', 'Jump to window to the left')
 
-nnoremap('<leader>q', ':lclose<bar>b#<bar>bd #<CR>', 'Closes current buffer')
+nnoremap('<leader>q', ':bd<CR>', 'Closes current buffer')
 
 nnoremap('j', 'gj', 'Makes cursor walk down through wrapped lines (lines that goes beyond the available space in the buffer window size')
 nnoremap('k', 'gk')

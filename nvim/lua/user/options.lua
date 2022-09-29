@@ -46,9 +46,7 @@ o.conceallevel = 0 -- allows markers `` to appear in Markdown files
 o.hlsearch = true
 o.fillchars = { eob = " " } -- Replaces the ~ at end of buffer with spaces which in effect hides it
 o.laststatus = 3
---o.listchars = { trail = '*' } -- https://www.reddit.com/r/neovim/comments/rgadme/comment/holfjbc/?utm_source=share&utm_medium=web2x&context=3
---o.list = true --To see tabs: https://vim.fandom.com/wiki/Highlight_unwanted_spaces
-
+o.ruler = false
 o.shortmess:append 'c' -- avoid reduntant messages from ins-completion menu
 o.shortmess:append 'sI' -- dont show default intro message
 

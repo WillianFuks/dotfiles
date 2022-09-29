@@ -137,7 +137,7 @@ if config.extensions and config.extensions.fzf then
     telescope.load_extension "fzf"
 end
 
-nnoremap('<C-f>', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], 'Find Files Picker')
+nnoremap('<C-p>', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], 'Find Files Picker')
 nnoremap('<leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<cr>]], 'Grep words on files')
 nnoremap('<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<cr>]], '')
 nnoremap('<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<cr>]], '')

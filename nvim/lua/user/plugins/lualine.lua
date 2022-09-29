@@ -30,36 +30,37 @@ config = {
   },
   sections = {
     lualine_a = {
-
         {
             function()
                 local current_line = vim.fn.line '.'
-                return table.concat({ 'L:', current_line })
+                local total_lines = vim.fn.line '$'
+                return table.concat({ current_line, '/', total_lines })
             end
         }
-
     },
     lualine_b = {
         {
-            "b:gitsigns_head",
-            icon = "",
-            separator = '|'
-        },
-        {
-            'diff',
-            source = diff_source,
-            colored = false,
-        },
-        {
-            'diagnostics',
-             symbols = { error = " ", warn = " ", info = " ", hint = " " },
+            'filename',
+            newfile_status = true,
+            path = 1,
         }
     },
     lualine_c = {
         {
-            'filename',
-            newfile_status = true,
-            path = 0,
+            "b:gitsigns_head",
+            icon = "",
+            separator = ':',
+            padding = { right = 0, left = 1 }
+        },
+        -- {
+        --     'diff',
+        --     source = diff_source,
+        --     colored = false,
+        --     padding = { left = 1}
+        -- },
+        {
+            'diagnostics',
+            symbols = { error = " ", warn = " ", info = " ", hint = " " },
         }
     },
     lualine_x = {
@@ -80,14 +81,15 @@ config = {
     lualine_y = {
         {
             function()
-              return ""
+              return ''
             end,
             color = function()
               local buf = vim.api.nvim_get_current_buf()
               local ts = vim.treesitter.highlighter.active[buf]
               return { fg = ts and not vim.tbl_isempty(ts) and colors.green or colors.red }
             end,
-            separator = ''
+            separator = '',
+            padding = 0
        },
        {
            function(msg) return '' end,
@@ -99,7 +101,6 @@ config = {
        }
     },
     lualine_z = {
-
         {
             function() return "  " end,
             padding = { left = 0, right = 0 },

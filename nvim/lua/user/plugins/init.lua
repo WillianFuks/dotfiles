@@ -148,6 +148,17 @@ packer.startup({ function(use)
       config = function() require('user.plugins.indentlines') end,
     }
 
+    use {
+      "akinsho/bufferline.nvim",
+      config = function() require('user.plugins.bufferline') end,
+      event = "BufWinEnter",
+    }
+
+    use {
+      "akinsho/toggleterm.nvim",
+      config = function() require('user.plugins.toggleterm') end,
+    }
+
     packer.on_complete = vim.schedule_wrap(function()
         require('user.hooks').on_packer_completed()
     end)
