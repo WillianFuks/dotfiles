@@ -23,7 +23,6 @@ require(colorscheme).setup({
         "terminal", -- Darker terminal background
         "packer", -- Darker packer background
         "qf", -- Darker qf list background
-        'toggleterm'
     },
 
     high_visibility = {
@@ -60,7 +59,6 @@ require(colorscheme).setup({
         indent_blankline = true,
         nvim_illuminate = true,
         mini = true,
-        toggleterm = false
     }
 })
 

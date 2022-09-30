@@ -1,7 +1,7 @@
 local config = {
     options = {
-        mode = "buffers",
-        numbers = "none",
+        mode = 'buffers',
+        numbers = 'none',
         close_command = nil,
         right_mouse_command = nil,
         left_mouse_command = nil,
@@ -17,28 +17,28 @@ local config = {
         max_prefix_length = 15,
         truncate_names = true,
         tab_size = 18,
-        diagnostics = "nvim_lsp",
+        diagnostics = 'nvim_lsp',
         diagnostics_update_in_insert = false,
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
             local result = {}
-            local symbols = { error = "", warning = "", info = "" }
+            local symbols = { error = '', warning = '', info = '' }
             if not lvim.use_icons then
-              return "(" .. num .. ")"
+              return '(' .. num .. ')'
             end
             for name, count in pairs(diagnostics) do
               if symbols[name] and count > 0 then
-                table.insert(result, symbols[name] .. " " .. count)
+                table.insert(result, symbols[name] .. ' ' .. count)
               end
             end
-            result = table.concat(result, " ")
-            return #result > 0 and result or ""
+            result = table.concat(result, ' ')
+            return #result > 0 and result or ''
         end,
         custom_filter = nil,
         offsets = {
             {
-                filetype = "NvimTree",
-                text = "File Explorer",
-                text_align = "left",
+                filetype = 'NvimTree',
+                text = 'File Explorer',
+                text_align = 'left',
                 padding = 1,
                 separator = true
             }

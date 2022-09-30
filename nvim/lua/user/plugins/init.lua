@@ -50,28 +50,28 @@ packer.startup({ function(use)
     use {
         'rcarriga/nvim-notify',
         config = function() require 'user.plugins.notify' end,
-        requires = { "nvim-telescope/telescope.nvim" }
+        requires = { 'nvim-telescope/telescope.nvim' }
     }
 
     use {
-      "nvim-telescope/telescope.nvim",
-      --branch = "0.1.x",
+      'nvim-telescope/telescope.nvim',
+      --branch = '0.1.x',
       config = function() require 'user.plugins.telescope' end
     }
     use {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      requires = { "nvim-telescope/telescope.nvim" },
-      run = "make"
+      'nvim-telescope/telescope-fzf-native.nvim',
+      requires = { 'nvim-telescope/telescope.nvim' },
+      run = 'make'
     }
     use  {
-        "kyazdani42/nvim-tree.lua",
+        'kyazdani42/nvim-tree.lua',
         requires = {  'kyazdani42/nvim-web-devicons' },
         config = function() require 'user.plugins.nvimtree' end
     }
-    use { "kyazdani42/nvim-web-devicons", requires = { {'nvim-lua/plenary.nvim'} } }
+    use { 'kyazdani42/nvim-web-devicons', requires = { {'nvim-lua/plenary.nvim'} } }
 
     use {
-        "nvim-treesitter/nvim-treesitter",
+        'nvim-treesitter/nvim-treesitter',
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
         config = function() require 'user.plugins.treesitter' end
     }
@@ -93,7 +93,7 @@ packer.startup({ function(use)
         config = function() require('user.plugins.Comment') end
     }
     -- use {
-    --   "windwp/nvim-autopairs",
+    --   'windwp/nvim-autopairs',
     --   config = function() require('user.plugins.autopairs') end,
     -- }
     -- use {
@@ -102,7 +102,7 @@ packer.startup({ function(use)
     -- }
 
     use { 'marko-cerovac/material.nvim', config = function() require 'user.plugins.colorscheme' end }
-    use 'projekt0n/github-nvim-theme'
+    -- use 'projekt0n/github-nvim-theme'
 
     -- cmp related
 	use { 'hrsh7th/nvim-cmp', requires = { 'L3MON4D3/LuaSnip' } , config = function() require 'user.plugins.cmp' end}
@@ -144,20 +144,31 @@ packer.startup({ function(use)
     }
 
     use {
-      "lukas-reineke/indent-blankline.nvim",
+      'lukas-reineke/indent-blankline.nvim',
       config = function() require('user.plugins.indentlines') end,
     }
 
     use {
-      "akinsho/bufferline.nvim",
+      'akinsho/bufferline.nvim',
       config = function() require('user.plugins.bufferline') end,
-      event = "BufWinEnter",
+      event = 'BufWinEnter',
     }
 
     use {
-      "akinsho/toggleterm.nvim",
+      'akinsho/toggleterm.nvim',
       config = function() require('user.plugins.toggleterm') end,
     }
+
+    use {
+      'phaazon/hop.nvim',
+      config = function()
+        require('user.plugins.hop')
+        vim.cmd [[hi HopNextKey1 guifg=#ff9900 gui=bold cterm=bold]]
+        vim.cmd [[hi HopNextKey2 guifg=#ff9900 gui=bold cterm=bold]]
+        end
+    }
+
+    use { 'lewis6991/impatient.nvim' }
 
     packer.on_complete = vim.schedule_wrap(function()
         require('user.hooks').on_packer_completed()
