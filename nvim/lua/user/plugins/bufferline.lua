@@ -1,3 +1,14 @@
+local function diagnostics_indicator(_, _, diagnostics, _)
+    local result = {}
+    local symbols = { error = "", warning = "", info = "", hint = ""}
+    for name, count in pairs(diagnostics) do
+      if symbols[name] and count > 0 then
+        table.insert(result, table.concat({ symbols[name],  " ",  count }))
+      end
+    end
+    return #result > 0 and result or ""
+end
+
 local config = {
     options = {
         mode = 'buffers',
@@ -19,20 +30,7 @@ local config = {
         tab_size = 18,
         diagnostics = 'nvim_lsp',
         diagnostics_update_in_insert = false,
-        diagnostics_indicator = function(count, level, diagnostics_dict, context)
-            local result = {}
-            local symbols = { error = '', warning = '', info = '' }
-            if not lvim.use_icons then
-              return '(' .. num .. ')'
-            end
-            for name, count in pairs(diagnostics) do
-              if symbols[name] and count > 0 then
-                table.insert(result, symbols[name] .. ' ' .. count)
-              end
-            end
-            result = table.concat(result, ' ')
-            return #result > 0 and result or ''
-        end,
+        diagnostics_indicator = diagnostics_indicator,
         custom_filter = nil,
         offsets = {
             {
@@ -53,7 +51,7 @@ local config = {
         persist_buffer_sort = true,
         separator_style = 'slant',
         enforce_regular_tabs = false,
-        always_show_bufferline = false,
+        always_show_bufferline = true,
         hover = {
             enabled = false,
             delay = 200,
@@ -67,3 +65,5 @@ require('bufferline').setup({ options = config.options })
 
 nnoremap('<Tab>', [[<cmd>lua require('bufferline').cycle(1)<cr>]], 'Cycles through the buffers moving forward')
 nnoremap('<S-Tab>', [[<cmd>lua require('bufferline').cycle(-1)<cr>]], 'Cycles through the buffers moving backwards')
+nnoremap('<S-Right>', ':BufferLineMoveNext<CR>', 'Moves current buffer to the right position')
+nnoremap('<S-Left>', ':BufferLineMovePrev<CR>', 'Moves current buffer to the left position')

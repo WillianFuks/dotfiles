@@ -121,17 +121,7 @@ local config = {
 local telescope = require "telescope"
 telescope.setup(config)
 
---  if lvim.builtin.project.active then
---    pcall(function()
---      require("telescope").load_extension "projects"
---    end)
---  end
-
 telescope.load_extension "notify"
-
--- if config.telescope.on_config_done then
---   config.telescope.on_config_done(telescope)
--- end
 
 if config.extensions and config.extensions.fzf then
     telescope.load_extension "fzf"

@@ -13,13 +13,6 @@ vnoremap = partial('v')
 inoremap = partial('i')
 cnoremap = partial('i', { expr = true, noremap = true })
 
-local function resetPacker()
-    local ok, packer = pcall(require, 'packer')
-    if ok then
-        packer.reset()
-    end
-end
-
 nnoremap('<leader><leader>x', ':source %<CR>', 'Sources current buffer')
 nnoremap('<leader><leader>X', [[<Cmd>lua _G._is_reload = true local ok, packer = pcall(require, 'packer') if ok then packer.reset() end vim.cmd 'luafile $MYVIMRC'<CR>]], 'Sources config init.lua file which reloads the whole setup of neovim config')
 
@@ -77,3 +70,6 @@ cnoremap('<C-k>', 'pumvisible() ? "\\<C-p>" : "\\<C-k>"')
 
 nnoremap('<C-d>', '<C-d>zz')
 nnoremap('<C-u>', '<C-u>zz')
+
+nnoremap('g[', ':lua vim.diagnostic.goto_prev()<CR>', 'Go to previous LSP diagnostics')
+nnoremap('g]', ':lua vim.diagnostic.goto_next()<CR>', 'Go to next LSP diagnostics')

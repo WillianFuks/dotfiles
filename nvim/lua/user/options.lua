@@ -1,10 +1,9 @@
-utils = require('user.utils')
+local utils = require('user.utils')
 
 local g = vim.g
 local o = vim.opt
 local _sep = package.config:sub(1, 1)
 local _cache_path = vim.fn.stdpath('cache')
-local _uv = vim.loop
 
 local _undo_dir = _cache_path .. _sep .. 'undo'
 

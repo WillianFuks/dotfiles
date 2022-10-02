@@ -19,7 +19,6 @@ local init_opts = {
 }
 
 local ensure_packer = function()
-    local fn = vim.fn
     local install_path = packer_install_path
     if fn.empty(fn.glob(install_path)) > 0 then
         fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
@@ -43,7 +42,7 @@ packer.init(init_opts)
 packer.reset()
 
 packer.startup({ function(use)
-    use 'wbthomason/packer.nvim'
+    use { 'wbthomason/packer.nvim' }
 
     use { 'nvim-lua/popup.nvim' }
     use { 'nvim-lua/plenary.nvim' }
@@ -55,7 +54,6 @@ packer.startup({ function(use)
 
     use {
       'nvim-telescope/telescope.nvim',
-      --branch = '0.1.x',
       config = function() require 'user.plugins.telescope' end
     }
     use {
@@ -75,14 +73,9 @@ packer.startup({ function(use)
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
         config = function() require 'user.plugins.treesitter' end
     }
-    -- use {
-    --     'nvim-treesitter/nvim-treesitter-refactor',
-    --     requires = { 'nvim-treesitter/nvim-treesitter' },
-    -- }
     use {
         'p00f/nvim-ts-rainbow',
         requires = { 'nvim-treesitter/nvim-treesitter' },
-        --run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     }
     use {
         'JoosepAlviste/nvim-ts-context-commentstring',
@@ -92,20 +85,15 @@ packer.startup({ function(use)
         'numToStr/Comment.nvim',
         config = function() require('user.plugins.Comment') end
     }
-    -- use {
-    --   'windwp/nvim-autopairs',
-    --   config = function() require('user.plugins.autopairs') end,
-    -- }
-    -- use {
-    --     'andymass/vim-matchup',
-    --     requires = { 'nvim-treesitter/nvim-treesitter' },
-    -- }
 
     use { 'marko-cerovac/material.nvim', config = function() require 'user.plugins.colorscheme' end }
-    -- use 'projekt0n/github-nvim-theme'
 
     -- cmp related
-	use { 'hrsh7th/nvim-cmp', requires = { 'L3MON4D3/LuaSnip' } , config = function() require 'user.plugins.cmp' end}
+	use {
+        'hrsh7th/nvim-cmp',
+        requires = { 'L3MON4D3/LuaSnip' } ,
+        config = function() require 'user.plugins.cmp' end
+    }
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/cmp-path' }
     use { 'hrsh7th/cmp-cmdline' }
@@ -126,11 +114,19 @@ packer.startup({ function(use)
 	use { 'rafamadriz/friendly-snippets' }
 
     -- lsp
-    use { 'neovim/nvim-lspconfig' }
     use { 'tamago324/nlsp-settings.nvim' }
     use { 'jose-elias-alvarez/null-ls.nvim' }
     use { 'williamboman/mason.nvim', config = function() require('user.plugins.mason') end }
-    use { 'williamboman/mason-lspconfig.nvim' }
+    use {
+        'williamboman/mason-lspconfig.nvim',
+        after = 'mason.nvim',
+        config = function() require('user.plugins.mason-lspconfig') end
+    }
+    use {
+        'neovim/nvim-lspconfig',
+        after = 'mason-lspconfig.nvim',
+        config = function() require('user.plugins.lsp') end
+    }
 
     use {
       'lewis6991/gitsigns.nvim',
@@ -165,7 +161,9 @@ packer.startup({ function(use)
         require('user.plugins.hop')
         vim.cmd [[hi HopNextKey1 guifg=#ff9900 gui=bold cterm=bold]]
         vim.cmd [[hi HopNextKey2 guifg=#ff9900 gui=bold cterm=bold]]
-        end
+        end,
+      after = 'material.nvim'
+
     }
 
     use { 'lewis6991/impatient.nvim' }

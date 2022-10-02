@@ -1,7 +1,7 @@
 local config = {
   ensure_installed = { }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   auto_install = true,
-  ignore_install = { '' },
+  ignore_install = { },
   matchup = {
     enable = false,
     disable_virtual_text = true,
@@ -11,9 +11,9 @@ local config = {
     enable = false
   },
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = true,
     additional_vim_regex_highlighting = false,
-    disable = { "latex" },
+    disable = { 'latex', 'help' },
   },
   context_commentstring = {
     enable = true,
@@ -32,7 +32,9 @@ local config = {
       enable = true,
       disable = { 'yaml', 'python' }
   },
-  autotag = { enable = false },
+  autotag = {
+    enable = false
+  },
   --textobjects = {},
   textsubjects = {
     enable = false,
@@ -59,10 +61,5 @@ local config = {
   },
 }
 
--- Avoinding headless mode
-if #vim.api.nvim_list_uis() == 0 then
-  return
-end
-
-treesitter_configs = require 'nvim-treesitter.configs'
+local treesitter_configs = require 'nvim-treesitter.configs'
 treesitter_configs.setup(config)
