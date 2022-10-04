@@ -13,7 +13,7 @@ local config = {
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
-    disable = { 'latex', 'help' },
+    disable = { 'latex' },
   },
   context_commentstring = {
     enable = true,

@@ -140,10 +140,10 @@ function M.setup(server_name)
         pkg:install():once('closed', function()
             if pkg:is_installed() then
                 vim.schedule(function()
-                    vim.notify_once(string.format(
-                        'Installation complete for: [%q]', server_name),
-                        vim.log.levels.INFO
-                    )
+                    vim.notify_once(string.format( 'Installation complete for: [%q]', server_name), vim.log.levels.INFO)
+                    --This has to be here as it's running asynchronously
+                    local server_config = build_config(server_name, build_mason_config(server_name, pkg_name))
+                    launch_server(server_name, server_config)
                 end)
             else
                 vim.schedule(function() vim.notify_once(string.format('Failed to install package: [%q]', server_name), vim.log.levels.ERROR) end)

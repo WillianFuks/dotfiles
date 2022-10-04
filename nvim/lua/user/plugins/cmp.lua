@@ -1,13 +1,13 @@
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
 end
 
 ---when inside a snippet, seeks to the nearest luasnip field if possible, and checks if it is jumpable
 ---@param dir number 1 for forward, -1 for backward; defaults to 1
 ---@return boolean true if a jumpable luasnip field is found while inside a snippet
 local function jumpable(dir)
-  local luasnip = require "luasnip"
+  local luasnip = require 'luasnip'
 
   local win_get_cursor = vim.api.nvim_win_get_cursor
   local get_current_buf = vim.api.nvim_get_current_buf
@@ -91,51 +91,49 @@ local function jumpable(dir)
   end
 end
 
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-
---require("luasnip/loaders/from_vscode").lazy_load()
+local cmp = require('cmp')
+local luasnip = require('luasnip')
 
 local max_width = 0
 local kind_icons = {
-      Class = " ",
-      Color = " ",
-      Constant = " ",
-      Constructor = " ",
-      Enum = "練",
-      EnumMember = " ",
-      Event = " ",
-      Field = " ",
-      File = "",
-      Folder = " ",
-      Function = " ",
-      Interface = " ",
-      Keyword = " ",
-      Method = " ",
-      Module = " ",
-      Operator = "",
-      Property = " ",
-      Reference = " ",
-      Snippet = " ",
-      Struct = " ",
-      Text = " ",
-      TypeParameter = " ",
-      Unit = "塞",
-      Value = " ",
-      Variable = " ",
+      Class = ' ',
+      Color = ' ',
+      Constant = ' ',
+      Constructor = ' ',
+      Enum = '練',
+      EnumMember = ' ',
+      Event = ' ',
+      Field = ' ',
+      File = '',
+      Folder = ' ',
+      Function = ' ',
+      Interface = ' ',
+      Keyword = ' ',
+      Method = ' ',
+      Module = ' ',
+      Operator = '',
+      Property = ' ',
+      Reference = ' ',
+      Snippet = ' ',
+      Struct = ' ',
+      Text = ' ',
+      TypeParameter = ' ',
+      Unit = '塞',
+      Value = ' ',
+      Variable = ' ',
     }
 
 local source_names = {
-      nvim_lsp = "(LSP)",
-      emoji = "(Emoji)",
-      path = "(Path)",
-      calc = "(Calc)",
-      cmp_tabnine = "(Tabnine)",
-      vsnip = "(Snippet)",
-      luasnip = "(Snippet)",
-      buffer = "(Buffer)",
-      tmux = "(TMUX)",
-      npm = "(NPM)"
+      nvim_lsp = '(LSP)',
+      emoji = '(Emoji)',
+      path = '(Path)',
+      calc = '(Calc)',
+      cmp_tabnine = '(Tabnine)',
+      vsnip = '(Snippet)',
+      luasnip = '(Snippet)',
+      buffer = '(Buffer)',
+      tmux = '(TMUX)',
+      npm = '(NPM)'
 }
 
 local duplicates = {
@@ -165,7 +163,7 @@ cmp.setup({
     native_menu = false,
   },
   formatting = {
-    fields = { "kind", "abbr", "menu" },
+    fields = { 'kind', 'abbr', 'menu' },
     max_width = max_width,
     kind_icons = kind_icons,
     source_names = source_names,
@@ -173,7 +171,7 @@ cmp.setup({
     duplicates_default = duplicates_default,
     format = function(entry, vim_item)
       if max_width ~= 0 and #vim_item.abbr > max_width then
-        vim_item.abbr = string.sub(vim_item.abbr, 1, max_width - 1) .. "…"
+        vim_item.abbr = string.sub(vim_item.abbr, 1, max_width - 1) .. '…'
       end
       vim_item.kind = kind_icons[vim_item.kind]
       vim_item.menu = source_names[entry.source.name]
@@ -191,27 +189,27 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   sources = {
-    { name = "nvim_lsp" },
-    { name = "path" },
-    { name = "luasnip" },
-    { name = "cmp_tabnine" },
-    { name = "nvim_lua" },
-    { name = "buffer" },
-    { name = "calc" },
-    { name = "emoji" },
-    { name = "treesitter" },
-    { name = "crates" },
-    { name = "tmux" },
-    { name = "npm", keyword_length = 2 },
+    { name = 'nvim_lsp' },
+    { name = 'path' },
+    { name = 'luasnip' },
+    { name = 'cmp_tabnine' },
+    { name = 'nvim_lua' },
+    { name = 'buffer' },
+    { name = 'calc' },
+    { name = 'emoji' },
+    { name = 'treesitter' },
+    { name = 'crates' },
+    { name = 'tmux' },
+    { name = 'npm', keyword_length = 2 },
   },
   mapping = cmp.mapping.preset.insert {
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select }, { "i" }),
-    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }, { "i" }),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-y>"] = cmp.mapping {
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
+    ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-y>'] = cmp.mapping {
       i = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
       c = function(fallback)
         if cmp.visible() then
@@ -221,7 +219,7 @@ cmp.setup({
         end
       end,
     },
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_locally_jumpable() then
@@ -233,8 +231,8 @@ cmp.setup({
       else
         fallback()
       end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -242,14 +240,14 @@ cmp.setup({
       else
         fallback()
       end
-    end, { "i", "s" }),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping(function(fallback)
+    end, { 'i', 's' }),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         local confirm_opts_cp = vim.deepcopy(confirm_opts) -- avoid mutating the original opts below
         local is_insert_mode = function()
-          return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
+          return vim.api.nvim_get_mode().mode:sub(1, 1) == 'i'
         end
         if is_insert_mode() then -- prevent overwriting brackets
           confirm_opts_cp.behavior = cmp.ConfirmBehavior.Insert

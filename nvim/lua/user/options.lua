@@ -48,5 +48,6 @@ o.laststatus = 3
 o.ruler = false
 o.shortmess:append 'c' -- avoid reduntant messages from ins-completion menu
 o.shortmess:append 'sI' -- dont show default intro message
+o.cmdheight = 0
 
 return { colorscheme = 'material' }

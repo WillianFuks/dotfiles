@@ -61,6 +61,7 @@ return {
       ['gr'] = { vim.lsp.buf.references, 'Goto references' },
       ['gI'] = { vim.lsp.buf.implementation, 'Goto Implementation' },
       ['gs'] = { vim.lsp.buf.signature_help, 'show signature help' },
+      ['gq'] = { vim.diagnostic.setloclist, 'Opens loclist window' },
       ['gl'] = {
         function()
           local config = float
@@ -74,18 +75,5 @@ return {
   buffer_autocmds = {
     codelens_group = 'lsp_code_lens_refresh'
   },
-  ---@usage list of settings of nvim-lsp-installer
-  nlsp_settings = {
-    setup = {
-      config_home = vim.fn.stdpath 'config' .. '/lsp-settings',
-      -- set to false to overwrite schemastore.nvim
-      append_default_schemas = true,
-      ignored_servers = {},
-      loader = 'json',
-    },
-  },
-  null_ls = {
-    setup = {},
-    config = {},
-  },
+  nlsp_settings = { },
 }

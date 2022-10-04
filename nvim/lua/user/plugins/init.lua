@@ -115,6 +115,7 @@ packer.startup({ function(use)
 
     -- lsp
     use { 'tamago324/nlsp-settings.nvim' }
+    use { 'b0o/schemastore.nvim' }
     use { 'jose-elias-alvarez/null-ls.nvim' }
     use { 'williamboman/mason.nvim', config = function() require('user.plugins.mason') end }
     use {
@@ -126,6 +127,10 @@ packer.startup({ function(use)
         'neovim/nvim-lspconfig',
         after = 'mason-lspconfig.nvim',
         config = function() require('user.plugins.lsp') end
+    }
+    use {
+      'folke/lua-dev.nvim',
+      module = 'lua-dev',
     }
 
     use {

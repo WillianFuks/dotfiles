@@ -13,3 +13,5 @@ require('user.plugins.lsp.handlers')
 if not utils.is_dir(config.templates_dir) then
     require('user.plugins.lsp.templates')
 end
+
+require('nlspsettings').setup(config.nlsp_settings.setup)
