@@ -208,7 +208,7 @@ cmp.setup({
     ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
     ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(4),
     ['<C-y>'] = cmp.mapping {
       i = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
       c = function(fallback)

@@ -92,13 +92,17 @@ local function default_capabilities()
     return capabilities
 end
 
-local function build_config(server_name, mason_config)
-    local defaults = {
+function M.default_opts()
+    return {
         on_attach = default_on_attach,
         on_init = nil,
         on_exit = default_on_exit,
         capabilities = default_capabilities()
     }
+end
+
+local function build_config(server_name, mason_config)
+    local defaults = M.default_opts()
     local ok, custom_config = pcall(require, 'user.plugins.lsp.custom.' .. server_name)
     if ok then
         defaults = vim.tbl_deep_extend('force', defaults, custom_config)

@@ -73,3 +73,5 @@ nnoremap('<C-u>', '<C-u>zz')
 
 nnoremap('g[', ':lua vim.diagnostic.goto_prev()<CR>', 'Go to previous LSP diagnostics')
 nnoremap('g]', ':lua vim.diagnostic.goto_next()<CR>', 'Go to next LSP diagnostics')
+
+nnoremap('<leader>fo', ':lua vim.lsp.buf.format()<CR>', 'Formats code if formatter is available')

@@ -32,7 +32,7 @@ local config = {
             function()
                 local current_line = vim.fn.line '.'
                 local total_lines = vim.fn.line '$'
-                local col = vim.fn.col('.')
+                local col = vim.fn.virtcol('.')
                 return table.concat({ current_line, '/', total_lines , ' c', col, })
             end
         }
