@@ -68,6 +68,7 @@ nnoremap('<leader>P', '"+P')
 vnoremap('<leader>p', '"+p')
 vnoremap('<leader>P', '"+P')
 vnoremap('p', '"_dP', 'Avoids yanking text when pasting on visual mode - pasting on selected text')
+nnoremap('x', '"_x', 'Do not yank on x mode')
 
 nnoremap('<C-Up>', ':resize -2<CR>', 'Resize window')
 nnoremap('<C-Down>', ':resize +2<CR>')
@@ -87,8 +88,11 @@ nnoremap('g[', ':lua vim.diagnostic.goto_prev()<CR>', 'Go to previous LSP diagno
 nnoremap('g]', ':lua vim.diagnostic.goto_next()<CR>', 'Go to next LSP diagnostics')
 
 nnoremap('<leader>fo', ':lua vim.lsp.buf.format()<CR>', 'Formats code if formatter is available')
-nnoremap('<leader>a', ':lua vim.lsp.buf.code_action()<CR>', 'Code Actions')
-vnoremap('<leader>a', ':lua vim.lsp.buf.code_action()<CR>', 'Code Actions')
+nnoremap('<leader>ga', ':lua vim.lsp.buf.code_action()<CR>', 'Code Actions')
+vnoremap('<leader>ga', ':lua vim.lsp.buf.code_action()<CR>', 'Code Actions')
 
-nnoremap('<leader>l', ':lua vim.lsp.codelens.run()<CR>', 'Code Lens')
-vnoremap('<leader>l', ':lua vim.lsp.codelens.run()<CR>', 'Code Lens')
+nnoremap('<leader>gcl', ':lua vim.lsp.codelens.run()<CR>', 'Code Lens')
+vnoremap('<leader>gcl', ':lua vim.lsp.codelens.run()<CR>', 'Code Lens')
+
+nnoremap('q:', '<nop>', 'Disable history window')
+nnoremap('Q', ':q<cr>', 'Disable history window')

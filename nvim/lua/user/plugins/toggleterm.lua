@@ -50,19 +50,22 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
     desc = 'Adds ToggleTerm keymappings to make it possible to move around the terminal',
 })
 
-local Terminal = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({
-    cmd = 'lazygit',
-    dir = 'git_dir',
-    direction = 'float',
-    float_opts = {
-        border = 'double'
-    },
-    hidden = true }
-)
-
-function _lazygit_toggle()
-    lazygit:toggle()
-end
-
-nnoremap('<leader>g', '<cmd>lua _lazygit_toggle()<CR>', 'Toggles LazyGit terminal')
+-- local Terminal = require('toggleterm.terminal').Terminal
+-- local lazygit = Terminal:new({
+--     cmd = 'lazygit',
+--     dir = 'git_dir',
+--     direction = 'float',
+--     float_opts = {
+--         border = 'double',
+--         width = 200,
+--         height = 200,
+--         winblend=0
+--     },
+--     hidden = true }
+-- )
+--
+-- function _LAZYGIT_TOGGLE()
+--     lazygit:toggle()
+-- end
+--
+-- nnoremap('<leader>lg', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Toggles LazyGit terminal')

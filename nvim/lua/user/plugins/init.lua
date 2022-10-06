@@ -87,6 +87,7 @@ packer.startup({ function(use)
     }
 
     use { 'marko-cerovac/material.nvim', config = function() require 'user.plugins.colorscheme' end }
+    use { 'folke/tokyonight.nvim' }
 
     -- cmp related
 	use {
