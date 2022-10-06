@@ -1,7 +1,7 @@
 local pickers = {
   find_files = {
     --theme = "dropdown",
-    hidden = false,
+    hidden = true,
     --previewer = false,
   },
   live_grep = {

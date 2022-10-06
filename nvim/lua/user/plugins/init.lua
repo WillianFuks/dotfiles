@@ -101,7 +101,6 @@ packer.startup({ function(use)
 	use { 'hrsh7th/cmp-nvim-lsp' }
 	use { 'hrsh7th/cmp-nvim-lua' }
     use { 'David-Kunz/cmp-npm', requires = { 'nvim-lua/plenary.nvim' } }
-
 	-- snippets
 	use {
         'L3MON4D3/LuaSnip',
@@ -109,7 +108,8 @@ packer.startup({ function(use)
             require('luasnip.loaders.from_lua').lazy_load()
             require('luasnip.loaders.from_vscode').lazy_load()
             require('luasnip.loaders.from_snipmate').lazy_load()
-        end
+        end,
+        run = "make install_jsregexp",
     }
 	use { 'rafamadriz/friendly-snippets' }
 
@@ -118,7 +118,7 @@ packer.startup({ function(use)
     use { 'b0o/schemastore.nvim' }
     use {
         'jose-elias-alvarez/null-ls.nvim',
-        requires = { "nvim-lua/plenary.nvim" }
+        requires = { 'nvim-lua/plenary.nvim' }
     }
     use { 'williamboman/mason.nvim', config = function() require('user.plugins.mason') end }
     use {
@@ -134,6 +134,14 @@ packer.startup({ function(use)
     use {
       'folke/lua-dev.nvim',
       module = 'lua-dev',
+    }
+    use {
+        'ThePrimeagen/refactoring.nvim',
+        requires = {
+            {'nvim-lua/plenary.nvim'},
+            {'nvim-treesitter/nvim-treesitter'}
+        },
+        -- config = function() require('user.plugins.lsp.null-ls.refactor') end
     }
 
     use {

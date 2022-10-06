@@ -29,6 +29,12 @@ function main() {
   download_neovim
   verify_neovim
   install_neovim
+  install_lazygit
+}
+
+function install_lazygit() {
+    echo "Installing LazyGit..."
+    source "./install_lazygit.sh"
 }
 
 function download_neovim() {

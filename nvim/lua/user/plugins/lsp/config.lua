@@ -80,31 +80,58 @@ return {
     nlsp_settings = {},
     null_ls = {
         sources = {
+            null_ls.builtins.code_actions.refactoring,
+
             null_ls.builtins.diagnostics.flake8.with({
                 method = null_ls.methods.DIAGNOSTICS_ON_SAVE
             }),
-            null_ls.builtins.diagnostics.cmake_lint,
-            null_ls.builtins.diagnostics.eslint_d,
-            null_ls.builtins.diagnostics.luacheck,
-            null_ls.builtins.diagnostics.mypy,
-            null_ls.builtins.diagnostics.pydocstyle,
-            null_ls.builtins.diagnostics.shellcheck,
+            null_ls.builtins.diagnostics.cmake_lint.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE
+            }),
+            null_ls.builtins.diagnostics.eslint_d.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+            }),
+            null_ls.builtins.diagnostics.luacheck.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+                -- extra_args = {'--config', '.luacheckrc'}
+            }),
+            null_ls.builtins.diagnostics.mypy.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE
+            }),
+            null_ls.builtins.diagnostics.pydocstyle.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE
+            }),
+            null_ls.builtins.diagnostics.shellcheck.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE
+            }),
             -- null_ls.builtins.diagnostics.spectral,
-            null_ls.builtins.diagnostics.stylelint,
-            null_ls.builtins.diagnostics.tidy,
-            null_ls.builtins.diagnostics.tsc,
-            null_ls.builtins.diagnostics.vulture,
-            null_ls.builtins.diagnostics.yamllint,
+            null_ls.builtins.diagnostics.stylelint.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE
+            }),
+            null_ls.builtins.diagnostics.tidy.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE
+            }),
+            null_ls.builtins.diagnostics.tsc.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+            }),
+            null_ls.builtins.diagnostics.vulture.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE
+            }),
+            null_ls.builtins.diagnostics.yamllint.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE
+            }),
+
 
             null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.beautysh,
             null_ls.builtins.formatting.eslint_d,
             null_ls.builtins.formatting.fixjson,
             null_ls.builtins.formatting.isort,
-            null_ls.builtins.formatting.prettier,
+            null_ls.builtins.formatting.prettierd,
             null_ls.builtins.formatting.tidy,
             null_ls.builtins.formatting.trim_newlines,
             null_ls.builtins.formatting.trim_whitespace,
         }
     }
 }
+

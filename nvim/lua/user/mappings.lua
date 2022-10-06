@@ -1,11 +1,11 @@
 local default_opts = { noremap = true, silent = true }
 
 local function partial(mode, opts)
-	opts = opts or default_opts
-	return function(lhs, rhs, desc)
-		opts['desc'] = desc or ''
-		vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
-	end
+    opts = opts or default_opts
+    return function(lhs, rhs, desc)
+        opts['desc'] = desc or ''
+        vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+    end
 end
 
 nnoremap = partial('n')
@@ -14,7 +14,11 @@ inoremap = partial('i')
 cnoremap = partial('i', { expr = true, noremap = true })
 
 nnoremap('<leader><leader>x', ':source %<CR>', 'Sources current buffer')
-nnoremap('<leader><leader>X', [[<Cmd>lua _G._is_reload = true local ok, packer = pcall(require, 'packer') if ok then packer.reset() end vim.cmd 'luafile $MYVIMRC'<CR>]], 'Sources config init.lua file which reloads the whole setup of neovim config')
+nnoremap(
+    '<leader><leader>X',
+    [[<Cmd>lua _G._is_reload = true local ok, packer = pcall(require, 'packer') if ok then packer.reset() end vim.cmd 'luafile $MYVIMRC'<CR>]],
+    'Sources config init.lua file which reloads the whole setup of neovim config'
+)
 
 nnoremap('<leader>s', ':w<CR>', 'Regular file save')
 
@@ -23,7 +27,7 @@ nnoremap('<leader><space>', ':noh<CR>', 'Removes text highlighting')
 nnoremap('B', '^', 'Moves to the beginning of first non-empty character in row')
 vnoremap('B', '^')
 nnoremap('E', '$', 'Moves to the end of row')
-vnoremap('E','$')
+vnoremap('E', '$')
 
 nnoremap('zl', 'zL', 'Jump cursor to the right')
 vnoremap('zl', 'zL', 'Jump cursor to the right')
@@ -37,12 +41,20 @@ nnoremap('<C-H>', '<C-W><C-H>', 'Jump to window to the left')
 
 nnoremap('<leader>q', ':bd<CR>', 'Closes current buffer')
 
-nnoremap('j', 'gj', 'Makes cursor walk down through wrapped lines (lines that goes beyond the available space in the buffer window size')
+nnoremap(
+    'j',
+    'gj',
+    'Makes cursor walk down through wrapped lines (lines that goes beyond the available space in the buffer window size'
+)
 nnoremap('k', 'gk')
 
 nnoremap('dE', 'd$', 'Deletes until end of line')
 
-nnoremap('<F5>', [[:let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s<CR>]], 'Removes white spaces')
+-- nnoremap(
+--     '<F5>',
+--     [[:let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s<CR>]],
+--     'Removes white spaces'
+-- )
 
 inoremap('fd', '<esc>', 'Leaves insert mode to normal mode')
 
@@ -75,3 +87,8 @@ nnoremap('g[', ':lua vim.diagnostic.goto_prev()<CR>', 'Go to previous LSP diagno
 nnoremap('g]', ':lua vim.diagnostic.goto_next()<CR>', 'Go to next LSP diagnostics')
 
 nnoremap('<leader>fo', ':lua vim.lsp.buf.format()<CR>', 'Formats code if formatter is available')
+nnoremap('<leader>a', ':lua vim.lsp.buf.code_action()<CR>', 'Code Actions')
+vnoremap('<leader>a', ':lua vim.lsp.buf.code_action()<CR>', 'Code Actions')
+
+nnoremap('<leader>l', ':lua vim.lsp.codelens.run()<CR>', 'Code Lens')
+vnoremap('<leader>l', ':lua vim.lsp.codelens.run()<CR>', 'Code Lens')
