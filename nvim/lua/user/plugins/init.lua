@@ -86,8 +86,14 @@ packer.startup({ function(use)
         config = function() require('user.plugins.Comment') end
     }
 
-    use { 'marko-cerovac/material.nvim', config = function() require 'user.plugins.colorscheme' end }
-    use { 'folke/tokyonight.nvim' }
+    -- use {
+    --     'marko-cerovac/material.nvim',
+    --     -- config = function() require 'user.plugins.colorscheme' end
+    -- }
+    use {
+        'folke/tokyonight.nvim',
+        config = function() require 'user.plugins.colorscheme' end
+    }
 
     -- cmp related
 	use {
@@ -179,8 +185,7 @@ packer.startup({ function(use)
         vim.cmd [[hi HopNextKey1 guifg=#ff9900 gui=bold cterm=bold]]
         vim.cmd [[hi HopNextKey2 guifg=#ff9900 gui=bold cterm=bold]]
         end,
-      after = 'material.nvim'
-
+      -- after = 'material.nvim'
     }
 
     use { 'lewis6991/impatient.nvim' }

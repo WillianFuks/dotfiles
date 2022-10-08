@@ -1,4 +1,4 @@
-local config = { 
+local config = {
     ---LHS of toggle mappings in NORMAL mode
     toggler = {
         ---Line-comment toggle keymap

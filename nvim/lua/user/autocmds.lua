@@ -43,10 +43,12 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
       'DressingSelect',
       'tsplayground',
       'Markdown',
+      'null-ls-info',
+      'toggleterm'
     },
     callback = function()
       vim.cmd [[
-      nnoremap <silent> <buffer> q :close<CR>
+      nnoremap <silent> <buffer> e :close<CR>
       nnoremap <silent> <buffer> <esc> :close<CR>
       set nobuflisted
     ]]

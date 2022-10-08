@@ -12,4 +12,4 @@ vim.defer_fn(function()
     vim.cmd [[hi HopNextKey  guifg=#ff007c gui=bold cterm=bold]]
     vim.cmd [[hi HopNextKey1 guifg=#ff9900 gui=bold cterm=bold]]
     vim.cmd [[hi HopNextKey2 guifg=#ff9900 gui=bold cterm=bold]]
-end, 0)
+end, 1000)

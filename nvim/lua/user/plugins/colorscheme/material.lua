@@ -1,6 +1,4 @@
-local colorscheme = require('user.options').colorscheme
-
-require(colorscheme).setup({
+require('material').setup({
     contrast = {
         sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
         floating_windows = true, -- Enable contrast for floating windows
@@ -62,5 +60,5 @@ require(colorscheme).setup({
     }
 })
 
-if colorscheme == 'material' then vim.g.material_style = 'deep ocean' end
-vim.cmd('colorscheme ' .. colorscheme)
+vim.g.material_style = 'deep ocean'
+vim.cmd('colorscheme material')
