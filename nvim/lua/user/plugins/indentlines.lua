@@ -11,13 +11,13 @@ local config = {
         "Trouble",
         "text",
     },
-    char = "▏",
+    -- char = "▏",
     show_trailing_blankline_indent = true,
-    show_first_indent_level = false,
+    show_first_indent_level = true,
     use_treesitter = true,
     show_current_context = true,
     use_treesitter_scope = true,
-    show_current_context_start = false
+    show_current_context_start = true
 }
 
 require('indent_blankline').setup(config)

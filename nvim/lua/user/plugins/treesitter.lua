@@ -1,5 +1,5 @@
 local config = {
-  ensure_installed = { }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = { },
   auto_install = true,
   ignore_install = { },
   matchup = {
@@ -33,7 +33,7 @@ local config = {
       disable = { 'yaml', 'python' }
   },
   autotag = {
-    enable = false
+    enable = true
   },
   --textobjects = {},
   textsubjects = {

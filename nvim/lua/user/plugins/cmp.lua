@@ -36,16 +36,16 @@ local kind_icons = {
 }
 
 local source_names = {
-    nvim_lsp = '(LSP)',
-    emoji = '(Emoji)',
-    path = '(Path)',
-    calc = '(Calc)',
-    cmp_tabnine = '(Tabnine)',
-    vsnip = '(Snippet)',
-    luasnip = '(Snippet)',
-    buffer = '(Buffer)',
-    tmux = '(TMUX)',
-    npm = '(NPM)',
+    nvim_lsp = '[LSP]',
+    emoji = '[Emoji]',
+    path = '[Path]',
+    calc = '[Calc]',
+    cmp_tabnine = '[Tabnine]',
+    vsnip = '[Snippet]',
+    luasnip = '[Snippet]',
+    buffer = '[Buffer]',
+    tmux = '[TMUX]',
+    npm = '[NPM]',
 }
 
 local duplicates = {
@@ -74,7 +74,7 @@ cmp.setup({
         native_menu = false,
     },
     formatting = {
-        fields = { 'kind', 'abbr', 'menu' },
+        fields = {'abbr', 'kind', 'menu' },
         max_width = max_width,
         kind_icons = kind_icons,
         source_names = source_names,
@@ -84,7 +84,7 @@ cmp.setup({
             if max_width ~= 0 and #vim_item.abbr > max_width then
                 vim_item.abbr = string.sub(vim_item.abbr, 1, max_width - 1) .. '…'
             end
-            vim_item.kind = kind_icons[vim_item.kind]
+            vim_item.kind = table.concat({ kind_icons[vim_item.kind], ' ', vim_item.kind })
             vim_item.menu = source_names[entry.source.name]
             vim_item.dup = duplicates[entry.source.name] or duplicates_default
             return vim_item
