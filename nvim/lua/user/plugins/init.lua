@@ -174,8 +174,11 @@ packer.startup({
                 { 'nvim-lua/plenary.nvim' },
                 { 'nvim-treesitter/nvim-treesitter' },
             },
-            -- config = function() require('user.plugins.lsp.null-ls.refactor') end
         })
+        --dap
+        use {
+            'mfussenegger/nvim-dap'
+        }
 
         use({
             'lewis6991/gitsigns.nvim',
