@@ -1,4 +1,4 @@
-local config = require('user.plugins.lsp.config')
+local config = require('user.plugins.tools.lsp.config')
 local di = config.diagnostics
 
 vim.diagnostic.config({

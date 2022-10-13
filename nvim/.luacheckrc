@@ -14,7 +14,7 @@ std = {
 --     "023", -- An unpaired inline pop directive.
 --     "111", -- Setting an undefined global variable.
 --     "112", -- Mutating an undefined global variable.
---     "113", -- Accessing an undefined global variable.
+    -- "113", -- Accessing an undefined global variable.
 --     "121", -- Setting a read-only global variable.
 --     "122", -- Setting a read-only field of a global variable.
 --     "131", -- Unused implicitly defined global variable.

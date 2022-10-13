@@ -50,12 +50,6 @@ nnoremap('k', 'gk')
 
 nnoremap('dE', 'd$', 'Deletes until end of line')
 
--- nnoremap(
---     '<F5>',
---     [[:let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s<CR>]],
---     'Removes white spaces'
--- )
-
 inoremap('fd', '<esc>', 'Leaves insert mode to normal mode')
 
 vnoremap('<leader>y', '"+y', 'Copy content to clipboard')
@@ -70,10 +64,10 @@ vnoremap('<leader>P', '"+P')
 vnoremap('p', '"_dP', 'Avoids yanking text when pasting on visual mode - pasting on selected text')
 nnoremap('x', '"_x', 'Do not yank on x mode')
 
-nnoremap('<C-Up>', ':resize -2<CR>', 'Resize window')
-nnoremap('<C-Down>', ':resize +2<CR>')
-nnoremap('<C-Left>', ':vertical resize -2<CR>')
-nnoremap('<C-Right>', ':vertical resize +2<CR>')
+nnoremap('<C-Up>', ':resize +2<CR>', 'Resize window')
+nnoremap('<C-Down>', ':resize -2<CR>')
+nnoremap('<C-Left>', ':vertical resize +2<CR>')
+nnoremap('<C-Right>', ':vertical resize -2<CR>')
 
 vnoremap('<', '<gv', 'Push selected lines to the left indentation')
 vnoremap('>', '>gv', 'Push selected lines to the right indentation')
@@ -95,4 +89,4 @@ nnoremap('<leader>gcl', ':lua vim.lsp.codelens.run()<CR>', 'Code Lens')
 vnoremap('<leader>gcl', ':lua vim.lsp.codelens.run()<CR>', 'Code Lens')
 
 nnoremap('q:', '<nop>', 'Disable history window')
-nnoremap('Q', ':q<cr>', 'Disable history window')
+-- nnoremap('Q', ':q<cr>', 'Close')

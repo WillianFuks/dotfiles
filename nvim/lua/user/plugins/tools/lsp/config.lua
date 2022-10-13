@@ -57,7 +57,6 @@ local float = {
 local null_ls = require('null-ls')
 
 return {
-    templates_dir = vim.fn.stdpath('data') .. '/site/after/ftplugin',
     diagnostics = {
         signs = {
             active = true,
@@ -127,7 +126,7 @@ return {
             }),
             null_ls.builtins.diagnostics.luacheck.with({
                 method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-                -- extra_args = {'--config', '.luacheckrc'}
+                extra_args = {'--globals', 'vim'}
             }),
             null_ls.builtins.diagnostics.mypy.with({
                 method = null_ls.methods.DIAGNOSTICS_ON_SAVE,

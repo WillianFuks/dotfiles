@@ -1,6 +1,6 @@
 local M = {}
 
-local config = require('user.plugins.lsp.config')
+local config = require('user.plugins.tools.lsp.config')
 local autocmds = require('user.autocmds')
 
 ---@param server string such as 'pyright'
@@ -104,7 +104,7 @@ end
 
 local function build_config(server_name, mason_config)
     local defaults = M.default_opts()
-    local ok, custom_config = pcall(require, 'user.plugins.lsp.custom.' .. server_name)
+    local ok, custom_config = pcall(require, 'user.plugins.tools.lsp.providers.' .. server_name)
     if ok then
         defaults = vim.tbl_deep_extend('force', defaults, custom_config)
     end

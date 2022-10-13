@@ -15,7 +15,7 @@ g.mapleader = ','
 
 o.clipboard:append({ 'unnamedplus' })
 o.backup = false
-o.completeopt = { 'menuone' , 'noselect' }
+o.completeopt = { 'menu', 'menuone' , 'noselect' }
 o.ignorecase = true
 o.pumheight = 10
 o.showmode = false

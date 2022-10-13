@@ -159,9 +159,9 @@ packer.startup({
         })
         use({
             'neovim/nvim-lspconfig',
-            after = 'mason-lspconfig.nvim',
+            after = { 'mason-lspconfig.nvim', 'nvim-dap' },
             config = function()
-                require('user.plugins.lsp')
+                require('user.plugins.tools')
             end,
         })
         use({
@@ -176,9 +176,25 @@ packer.startup({
             },
         })
         --dap
-        use {
+        use({
             'mfussenegger/nvim-dap'
-        }
+        })
+        use({
+            'rcarriga/nvim-dap-ui',
+            requires = { 'mfussenegger/nvim-dap' }
+        })
+        use({
+            'mfussenegger/nvim-dap-python',
+            after = { 'nvim-dap' }
+        })
+        use({
+            'leoluz/nvim-dap-go',
+            after = { 'nvim-dap' }
+        })
+        use({
+            'jbyuki/one-small-step-for-vimkind',
+            after = { 'nvim-dap' }
+        })
 
         use({
             'lewis6991/gitsigns.nvim',
