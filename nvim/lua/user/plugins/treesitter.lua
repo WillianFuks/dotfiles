@@ -29,7 +29,7 @@ local config = {
     },
   },
   indent = {
-      enable = true,
+      enable = false, --for now this tool is experimental and clearly does not work
       disable = { 'yaml', 'python' }
   },
   autotag = {

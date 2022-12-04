@@ -12,6 +12,8 @@ local config = {
         "text",
     },
     -- char = "▏",
+    char = "┊",
+
     show_trailing_blankline_indent = true,
     show_first_indent_level = true,
     use_treesitter = true,

@@ -21,6 +21,7 @@ nnoremap(
 )
 
 nnoremap('<leader>s', ':w<CR>', 'Regular file save')
+vnoremap('<leader>s', '<ESC>:w<CR>', 'Regular file save')
 
 nnoremap('<leader><space>', ':noh<CR>', 'Removes text highlighting')
 

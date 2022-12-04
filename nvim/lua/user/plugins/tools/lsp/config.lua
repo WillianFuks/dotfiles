@@ -126,7 +126,7 @@ return {
             }),
             null_ls.builtins.diagnostics.luacheck.with({
                 method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-                extra_args = {'--globals', 'vim'}
+                extra_args = { '--globals', 'vim' },
             }),
             null_ls.builtins.diagnostics.mypy.with({
                 method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
@@ -153,6 +153,9 @@ return {
             null_ls.builtins.diagnostics.yamllint.with({
                 method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
             }),
+            null_ls.builtins.diagnostics.sqlfluff.with({
+                method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+            }),
 
             null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.beautysh,
@@ -167,6 +170,8 @@ return {
             null_ls.builtins.formatting.tidy,
             null_ls.builtins.formatting.trim_newlines,
             null_ls.builtins.formatting.trim_whitespace,
+            null_ls.builtins.formatting.sqlfluff.with({
+            }),
         },
     },
 }

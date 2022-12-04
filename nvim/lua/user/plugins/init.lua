@@ -165,8 +165,8 @@ packer.startup({
             end,
         })
         use({
-            'folke/lua-dev.nvim',
-            module = 'lua-dev',
+            'folke/neodev.nvim',
+            module = 'neodev',
         })
         use({
             'ThePrimeagen/refactoring.nvim',
@@ -243,6 +243,18 @@ packer.startup({
         })
 
         use({ 'lewis6991/impatient.nvim' })
+
+        use({
+            'norcalli/nvim-colorizer.lua',
+            config = function()
+                require('colorizer').setup()
+            end,
+        })
+
+        use({
+            "iamcco/markdown-preview.nvim",
+            run = function() vim.fn["mkdp#util#install"]() end,
+        })
 
         packer.on_complete = vim.schedule_wrap(function()
             require('user.hooks').on_packer_completed()
