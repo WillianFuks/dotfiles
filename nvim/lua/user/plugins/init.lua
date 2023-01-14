@@ -48,11 +48,10 @@ packer.startup({
         use({ 'nvim-lua/popup.nvim' })
         use({ 'nvim-lua/plenary.nvim' })
         use({
-            'rcarriga/nvim-notify',
-            config = function()
-                require('user.plugins.notify')
-            end,
-            requires = { 'nvim-telescope/telescope.nvim' },
+          "vigoux/notifier.nvim",
+          config = function()
+            require'notifier'.setup {}
+          end
         })
 
         use({
@@ -105,6 +104,12 @@ packer.startup({
         -- }
         use({
             'folke/tokyonight.nvim',
+            config = function()
+                require('user.plugins.colorscheme')
+            end,
+        })
+        use({
+            'ellisonleao/gruvbox.nvim',
             config = function()
                 require('user.plugins.colorscheme')
             end,

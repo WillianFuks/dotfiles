@@ -121,7 +121,7 @@ local config = {
 local telescope = require "telescope"
 telescope.setup(config)
 
-telescope.load_extension "notify"
+-- telescope.load_extension "notify"
 
 if config.extensions and config.extensions.fzf then
     telescope.load_extension "fzf"

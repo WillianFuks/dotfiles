@@ -52,4 +52,4 @@ o.shortmess:append 'sI' -- dont show default intro message
 o.cmdheight = 0
 o.mouse = ''
 
-return { colorscheme = 'tokyonight' }
+return { colorscheme = 'gruvbox' }

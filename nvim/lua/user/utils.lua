@@ -5,8 +5,8 @@ local uv = vim.loop
 function M.reload(folder)
     for name, _ in pairs(package.loaded) do
         if name:match("^" .. folder) then
-        package.loaded[name] = nil
-    end
+            package.loaded[name] = nil
+        end
     end
 end
 

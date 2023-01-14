@@ -30,7 +30,7 @@ local defaults = {
   },
 }
 
-local notify = require 'notify'
+-- local notify = require 'notify'
 
-notify.setup(defaults)
-vim.notify = notify
+-- notify.setup(defaults)
+-- vim.notify = notify

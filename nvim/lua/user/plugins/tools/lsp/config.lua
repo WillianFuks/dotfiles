@@ -55,6 +55,12 @@ local float = {
 }
 
 local null_ls = require('null-ls')
+local utils = require('user.utils')
+local tmp_null_dir = '/tmp/null_ls/'
+
+if not utils.is_dir(tmp_null_dir) then
+    vim.fn.mkdir(tmp_null_dir, 'p') --if already exists then exit silently
+end
 
 return {
     diagnostics = {
@@ -108,6 +114,7 @@ return {
     },
     nlsp_settings = {},
     null_ls = {
+        temp_dir = '/tmp/',
         sources = {
             null_ls.builtins.code_actions.refactoring,
             null_ls.builtins.code_actions.eslint_d.with({

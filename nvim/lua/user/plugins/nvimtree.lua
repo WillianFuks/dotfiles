@@ -21,7 +21,6 @@ local function telescope_live_grep(_)
 end
 
 local function open_and_refocus(node)
-    print(node)
     local nt_api = require('nvim-tree.api')
     nt_api.node.open.edit(node)
     nt_api.tree.focus()
@@ -53,6 +52,7 @@ local config = {
             ignore = false,
         },
         view = {
+            adaptive_size = true,
             mappings = {
                 list = {
                     { key = { '<CR>', 'o' }, action = 'edit' },
