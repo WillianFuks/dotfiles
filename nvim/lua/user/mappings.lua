@@ -40,7 +40,7 @@ nnoremap('<C-K>', '<C-W><C-K>', 'Jump to window above')
 nnoremap('<C-L>', '<C-W><C-L>', 'Jump to window to the right')
 nnoremap('<C-H>', '<C-W><C-H>', 'Jump to window to the left')
 
-nnoremap('<leader>q', ':bd<CR>', 'Closes current buffer')
+nnoremap('<leader>q', '<cmd>bd | NvimTreeClose<CR>', 'Closes current buffer and forces closing nvim-tree')
 
 nnoremap(
     'j',
@@ -50,6 +50,7 @@ nnoremap(
 nnoremap('k', 'gk')
 
 nnoremap('dE', 'd$', 'Deletes until end of line')
+nnoremap('cE', 'c$', 'Changes until end of line')
 
 inoremap('fd', '<esc>', 'Leaves insert mode to normal mode')
 

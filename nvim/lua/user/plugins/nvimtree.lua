@@ -76,7 +76,7 @@ local config = {
             },
         },
         filters = {
-            custom = { 'node_modules', '\\.cache', '\\.pyc$' },
+            custom = { 'node_modules', '\\.cache', '\\.pyc$', '__pycache__' },
         },
         trash = {
             cmd = 'trash',
