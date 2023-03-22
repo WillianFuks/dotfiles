@@ -1,63 +1,63 @@
 local pickers = {
   find_files = {
-    --theme = "dropdown",
+    --theme = 'dropdown',
     hidden = true,
     --previewer = false,
   },
   live_grep = {
     --@usage don't include the filename in the search results
     only_sort_text = true,
-    --theme = "dropdown",
+    --theme = 'dropdown',
   },
   grep_string = {
     only_sort_text = true,
-    --theme = "dropdown",
+    --theme = 'dropdown',
   },
   buffers = {
-    --theme = "dropdown",
-    previewer = false,
-    initial_mode = "normal",
+    --theme = 'dropdown',
+    previewer = true,
+    initial_mode = 'normal',
   },
   planets = {
     show_pluto = true,
     show_moon = true,
   },
   git_files = {
-    --theme = "dropdown",
+    --theme = 'dropdown',
     hidden = true,
-    previewer = false,
+    previewer = true,
     show_untracked = true,
   },
   lsp_references = {
-    --theme = "dropdown",
-    initial_mode = "normal",
+    --theme = 'dropdown',
+    initial_mode = 'normal',
   },
   lsp_definitions = {
-    --theme = "dropdown",
-    initial_mode = "normal",
+    --theme = 'dropdown',
+    initial_mode = 'normal',
   },
   lsp_declarations = {
-    --theme = "dropdown",
-    initial_mode = "normal",
+    --theme = 'dropdown',
+    initial_mode = 'normal',
   },
   lsp_implementations = {
-    --theme = "dropdown",
-    initial_mode = "normal",
+    --theme = 'dropdown',
+    initial_mode = 'normal',
   },
 }
 
-local actions = require "telescope.actions"
+local actions = require 'telescope.actions'
 
 local config = {
   defaults = {
-    prompt_prefix = " ",
-    selection_caret = " ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    scroll_strategy = "limit",
+    prompt_prefix = ' ',
+    selection_caret = ' ',
+    initial_mode = 'insert',
+    selection_strategy = 'reset',
+    sorting_strategy = 'descending',
+    scroll_strategy = 'limit',
     dynamic_preview_title = true,
-    layout_strategy = "horizontal",
+    layout_strategy = 'horizontal',
     layout_config = {
       width = 0.75,
       preview_cutoff = 120,
@@ -73,39 +73,39 @@ local config = {
       vertical = { mirror = false },
     },
     vimgrep_arguments = {
-      "rg",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-      "--hidden",
-      "--glob=!.git/",
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden',
+      '--glob=!.git/',
     },
     mappings = {
       i = {
-        ["<C-n>"] = actions.move_selection_next,
-        ["<C-p>"] = actions.move_selection_previous,
-        ["<C-c>"] = actions.close,
-        ["<C-j>"] = actions.cycle_history_next,
-        ["<C-k>"] = actions.cycle_history_prev,
-        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        ["<CR>"] = actions.select_default,
-        ["<C-d>"] = require("telescope.actions").delete_buffer,
+        ['<C-n>'] = actions.move_selection_next,
+        ['<C-p>'] = actions.move_selection_previous,
+        ['<C-c>'] = actions.close,
+        ['<C-j>'] = actions.cycle_history_next,
+        ['<C-k>'] = actions.cycle_history_prev,
+        ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
+        ['<CR>'] = actions.select_default,
+        ['<C-d>'] = require('telescope.actions').delete_buffer,
       },
       n = {
-        ["<C-n>"] = actions.move_selection_next,
-        ["<C-p>"] = actions.move_selection_previous,
-        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        ["db"] = require("telescope.actions").delete_buffer,
+        ['<C-n>'] = actions.move_selection_next,
+        ['<C-p>'] = actions.move_selection_previous,
+        ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
+        ['db'] = require('telescope.actions').delete_buffer,
       },
     },
     --pickers = pickers,
     file_ignore_patterns = { 'node_modules', '\\.pyc' },
     path_display = { 'absolute' },
     color_devicons = true,
-    set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
   },
   pickers = pickers,
   extensions = {
@@ -113,18 +113,18 @@ local config = {
       fuzzy = true, -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
       override_file_sorter = true, -- override the file sorter
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      case_mode = 'ignore_case', -- or 'ignore_case' or 'respect_case'
     },
   },
 }
 
-local telescope = require "telescope"
+local telescope = require 'telescope'
 telescope.setup(config)
 
--- telescope.load_extension "notify"
+-- telescope.load_extension 'notify'
 
 if config.extensions and config.extensions.fzf then
-    telescope.load_extension "fzf"
+    telescope.load_extension 'fzf'
 end
 
 nnoremap('<C-p>', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], 'Find Files Picker')

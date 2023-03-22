@@ -50,12 +50,17 @@ packer.startup({
         use({
           "vigoux/notifier.nvim",
           config = function()
-            require'notifier'.setup {}
+            require'notifier'.setup {
+                notify = {
+                    clear_time = 10000
+                }
+            }
           end
         })
 
         use({
             'nvim-telescope/telescope.nvim',
+            tag='0.1.1',
             config = function()
                 require('user.plugins.telescope')
             end,
@@ -102,12 +107,12 @@ packer.startup({
         --     'marko-cerovac/material.nvim',
         --     -- config = function() require 'user.plugins.colorscheme' end
         -- }
-        use({
-            'folke/tokyonight.nvim',
-            config = function()
-                require('user.plugins.colorscheme')
-            end,
-        })
+        -- use({
+        --     'folke/tokyonight.nvim',
+        --     config = function()
+        --         require('user.plugins.colorscheme')
+        --     end,
+        -- })
         use({
             'ellisonleao/gruvbox.nvim',
             config = function()
@@ -172,6 +177,12 @@ packer.startup({
         use({
             'folke/neodev.nvim',
             module = 'neodev',
+            after = { 'nvim-dap' },
+            config = function()
+                require('neodev').setup({
+                  library = { plugins = { 'nvim-dap-ui' }, types = true },
+                })
+            end
         })
         use({
             'ThePrimeagen/refactoring.nvim',

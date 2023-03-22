@@ -28,11 +28,7 @@ end
 
 local config = {
     setup = {
-        ignore_ft_on_setup = {
-            'startify',
-            'dashboard',
-            'alpha',
-        },
+        ignore_buffer_on_setup = false,
         disable_netrw = true,
         hijack_directories = {
             enable = false,

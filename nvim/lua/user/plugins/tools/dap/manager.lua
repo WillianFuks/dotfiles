@@ -36,6 +36,4 @@ function M.setup(dap_name)
     end
 end
 
-M.setup('debugpy')
-
 return M
