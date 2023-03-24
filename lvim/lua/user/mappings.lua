@@ -100,9 +100,24 @@ lvim.lsp.buffer_mappings.visual_mode['<leader>gcl'] = {
 --------------------  MISC  -----------------------
 ---------------------------------------------------
 
-lvim.builtin.which_key.mappings["s"]["s"] = { ":SymbolsOutline<CR>", "Toggle symbols outline from the LSP" }
+lvim.builtin.which_key.mappings["s"]["s"] = {
+  ":SymbolsOutline<CR>",
+  "Toggle symbols outline from the LSP"
+}
 
-lvim.keys.normal_mode["<F5>"] = { function() require('dap').continue() end, { desc = "Start DAP Debugging" } }
-lvim.keys.normal_mode["<F3>"] = { function() require('dap').step_over() end, { desc = "DAP - Step Over" } }
-lvim.keys.normal_mode["<F2>"] = { function() require('dap').step_into() end, { desc = "DAP - Step Into" } }
-lvim.keys.normal_mode["<F4>"] = { function() require('dap').step_out() end, { desc = "DAP - Step Out" } }
+lvim.keys.normal_mode["<F5>"] = {
+  function() require('dap').continue() end,
+  { desc = "Start DAP Debugging" }
+}
+lvim.keys.normal_mode["<F3>"] = {
+  function() require('dap').step_over() end,
+  { desc = "DAP - Step Over" }
+}
+lvim.keys.normal_mode["<F2>"] = {
+  function() require('dap').step_into() end,
+  { desc = "DAP - Step Into" }
+}
+lvim.keys.normal_mode["<F4>"] = {
+  function() require('dap').step_out() end,
+  { desc = "DAP - Step Out" }
+}
