@@ -48,3 +48,5 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = {
   "%.flac",
   "%.tar.gz",
 }
+
+lvim.builtin.telescope.pickers.previewer = true

@@ -1,6 +1,7 @@
 local null_ls = require "null-ls"
 local formatters = require "lvim.lsp.null-ls.formatters"
 local linters = require "lvim.lsp.null-ls.linters"
+local Log = require "lvim.core.log"
 
 formatters.setup {
   { command = "black" },
@@ -26,13 +27,15 @@ linters.setup {
   },
 }
 
-local debugpy_python_path = require('mason-registry').get_package('debugpy'):get_install_path() .. '/venv/bin/python3'
-local opts = {
-    include_configs = true
-}
-pcall(function()
-  require("dap-python").setup(debugpy_python_path, opts)
+local debugpy_python_path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python3"
+
+local _, error = pcall(function()
+  require("dap-python").setup(debugpy_python_path)
 end)
+
+if error then
+  Log:error(vim.inspect(error))
+end
 
 vim.api.nvim_create_autocmd(
   { "FileType" },
@@ -46,4 +49,4 @@ vim.api.nvim_create_autocmd(
         s = { "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug Selection" },
       }
     end,
-})
+  })

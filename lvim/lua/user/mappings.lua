@@ -79,19 +79,19 @@ lvim.lsp.buffer_mappings.normal_mode['<leader>fo'] = {
   ':lua vim.lsp.buf.format()<CR>' ,
   "Formats code if formatter is available"
 }
-lvim.lsp.buffer_mappings.normal_mode['<leader>ga'] = {
+lvim.lsp.buffer_mappings.normal_mode['ga'] = {
   ':lua vim.lsp.buf.code_action()<CR>',
   "Code Action"
 }
-lvim.lsp.buffer_mappings.visual_mode['<leader>ga'] = {
+lvim.lsp.buffer_mappings.visual_mode['ga'] = {
   ':lua vim.lsp.buf.code_action()<CR>',
   "Code Action"
 }
-lvim.lsp.buffer_mappings.normal_mode['<leader>gcl'] = {
+lvim.lsp.buffer_mappings.normal_mode['gcl'] = {
   ':lua vim.lsp.codelens.run()<CR>',
   "Code Lens"
 }
-lvim.lsp.buffer_mappings.visual_mode['<leader>gcl'] = {
+lvim.lsp.buffer_mappings.visual_mode['gcl'] = {
   ':lua vim.lsp.codelens.run()<CR>',
   "Code Lens"
 }
