@@ -75,10 +75,10 @@ lvim.lsp.buffer_mappings.normal_mode['g]'] = {
   lvim.builtin.which_key.mappings["l"]["j"][1],
   { desc = lvim.builtin.which_key.mappings["l"]["j"][2] }
 }
-lvim.lsp.buffer_mappings.normal_mode['<leader>fo'] = {
-  ':lua vim.lsp.buf.format()<CR>' ,
-  "Formats code if formatter is available"
-}
+-- lvim.lsp.buffer_mappings.normal_mode['<leader>fo'] = {
+--   ':lua vim.lsp.buf.format()<CR>' ,
+--   "Formats code if formatter is available"
+-- }
 lvim.lsp.buffer_mappings.normal_mode['ga'] = {
   ':lua vim.lsp.buf.code_action()<CR>',
   "Code Action"

@@ -50,3 +50,12 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = {
 }
 
 lvim.builtin.telescope.pickers.previewer = true
+
+-- TODO: Change code to pcall
+-- if require'telescope'.extensions.project ~= nil then
+--   lvim.builtin.which_key.mappings["s"]["p"] = {
+--     name = "Projects",
+--     ":SymbolsOutline<CR>",
+--     "Toggle symbols outline from the LSP"
+--   }
+-- end

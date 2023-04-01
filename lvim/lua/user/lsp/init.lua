@@ -1,6 +1,7 @@
 require "user.lsp.languages.python"
 require "user.lsp.languages.lua"
 require "user.lsp.languages.sh"
+require "user.lsp.languages.javascript"
 
 lvim.lsp.diagnostics.float.focusable = true
 

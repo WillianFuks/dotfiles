@@ -36,7 +36,7 @@ lvim.autocommands = {
       callback = function()
         local lvim_utils = require("lvim.utils")
         local cwd = vim.fn.getcwd()
-        local ok, err = pcall(function()
+        local ok, _ = pcall(function()
           local dap = require("dap")
           local dap_ext_vscode = require "dap.ext.vscode"
           local json_path = nil
@@ -50,11 +50,21 @@ lvim.autocommands = {
           end
         end)
         if not ok then
-          Log:error(err)
+          Log:error("Failed loading DAP configuration from launch.json")
         end
       end
     }
   },
+  {
+    { "TextYankPost" },
+    {
+      group = group_general_settings,
+      pattern = { "*" },
+      callback = function()
+        vim.highlight.on_yank { higroup = "Visual", timeout = 150 }
+      end,
+    }
+  }
 }
 
 vim.api.nvim_create_autocmd("BufEnter", {
