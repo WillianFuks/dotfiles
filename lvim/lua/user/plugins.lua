@@ -186,6 +186,9 @@ lvim.plugins = {
     setup = function()
       vim.cmd [[packadd telescope.nvim]]
     end,
+  },
+  {
+    'Mofiqul/vscode.nvim'
   }
 }
 
@@ -194,3 +197,5 @@ lvim.builtin.treesitter.matchup.enable = true
 lvim.builtin.treesitter.matchup.disable_virtual_text = false
 lvim.builtin.treesitter.matchup.include_match_words = true
 lvim.builtin.indentlines.options.show_current_context_start = true
+lvim.colorscheme = 'vscode'
+vim.o.background = 'dark'
