@@ -14,3 +14,12 @@ if lvim.builtin.dap.ui.auto_open then
     dap.repl.close()
   end
 end
+
+lvim.builtin.dap.ui.config.expand_lines = false
+lvim.builtin.dap.ui.config.layouts[1]['elements'] = {
+  { id = "scopes", size = 0.45 },
+  { id = "breakpoints", size = 0.15 },
+  { id = "watches", size = 0.20 },
+  { id = "stacks", size = 0.20 },
+}
+lvim.builtin.dap.ui.config.layouts[1]['size'] = 0.40
