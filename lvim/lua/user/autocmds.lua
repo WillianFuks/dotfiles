@@ -64,6 +64,17 @@ lvim.autocommands = {
         vim.highlight.on_yank { higroup = "Visual", timeout = 150 }
       end,
     }
+  },
+  {
+    -- resize splits if window got resized
+    -- from https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+    { "VimResized" },
+    {
+      group = group_general_settings,
+      callback = function()
+        vim.cmd("tabdo wincmd =")
+      end,
+    }
   }
 }
 
