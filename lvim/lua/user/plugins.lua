@@ -1,7 +1,7 @@
 require "user.plugins.telescope"
 require "user.plugins.dap"
 
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+-- After changing plugin config exit and reopen Lvim.
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
@@ -55,7 +55,7 @@ lvim.plugins = {
   },
   {
     "andymass/vim-matchup",
-    setup = function()
+    init = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
   },
@@ -84,8 +84,8 @@ lvim.plugins = {
   },
   -- {
   --   "tzachar/cmp-tabnine",
-  --   run = "./install.sh",
-  --   requires = "hrsh7th/nvim-cmp",
+  --   build = "./install.sh",
+  --   dependencies = "hrsh7th/nvim-cmp",
   --   event = "InsertEnter",
   -- },
   {
@@ -118,7 +118,7 @@ lvim.plugins = {
   },
   {
     "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
+    build = "cd app && npm install",
     ft = "markdown",
     config = function()
       vim.g.mkdp_auto_start = 1
@@ -170,25 +170,45 @@ lvim.plugins = {
   },
   {
     "mxsdev/nvim-dap-vscode-js",
-    requires = {
+    dependencies = {
       "mfussenegger/nvim-dap",
       "microsoft/vscode-js-debug"
     }
   },
   {
     "microsoft/vscode-js-debug",
-    opt = true,
-    run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+    lazy = true,
+    build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
   },
   {
     "nvim-telescope/telescope-project.nvim",
     event = "BufWinEnter",
-    setup = function()
-      vim.cmd [[packadd telescope.nvim]]
+    init = function()
+      require"telescope".load_extension("project")
     end,
   },
   {
-    'Mofiqul/vscode.nvim'
+    "Mofiqul/vscode.nvim"
+  },
+  {
+    "ellisonleao/gruvbox.nvim"
+  },
+  {
+    "projekt0n/github-nvim-theme",
+    version = "v0.0.7"
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    opts = {},
+  },
+  {
+    "jbyuki/one-small-step-for-vimkind",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    }
+  },
+  {
+    "stevearc/dressing.nvim",
   }
 }
 
@@ -197,5 +217,5 @@ lvim.builtin.treesitter.matchup.enable = true
 lvim.builtin.treesitter.matchup.disable_virtual_text = false
 lvim.builtin.treesitter.matchup.include_match_words = true
 lvim.builtin.indentlines.options.show_current_context_start = true
-lvim.colorscheme = 'vscode'
-vim.o.background = 'dark'
+lvim.colorscheme = "github_dark_default"
+-- vim.o.background = "dark"

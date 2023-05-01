@@ -27,10 +27,11 @@ linters.setup {
   },
 }
 
-local debugpy_python_path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python3"
+-- local debugpy_python_path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python3"
+local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
 
 local _, error = pcall(function()
-  require("dap-python").setup(debugpy_python_path)
+  require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
 end)
 
 if error then
@@ -49,4 +50,4 @@ vim.api.nvim_create_autocmd(
         s = { "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug Selection" },
       }
     end,
-  })
+})
