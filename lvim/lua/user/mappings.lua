@@ -121,3 +121,8 @@ lvim.keys.normal_mode["<F4>"] = {
   function() require('dap').step_out() end,
   { desc = "DAP - Step Out" }
 }
+
+lvim.keys.normal_mode["<S-h>"] =  ":BufferLineCyclePrev<CR>"
+lvim.keys.visual_mode["<S-h>"] =  ":BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["<S-l>"] =  ":BufferLineCycleNext<CR>"
+lvim.keys.visual_mode["<S-l>"] =  ":BufferLineCycleNext<CR>"
