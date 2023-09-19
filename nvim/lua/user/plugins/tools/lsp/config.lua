@@ -1,6 +1,7 @@
 local skipped_servers = {
     'angularls',
     'ansiblels',
+    'clangd',
     'ccls',
     'csharp_ls',
     'cssmodules_ls',

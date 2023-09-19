@@ -5,8 +5,6 @@ require "user.plugins.dap"
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
--- lvim.builtin.nvimtree.setup.view.side = "left"
--- lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
@@ -30,9 +28,8 @@ lvim.builtin.indentlines.options.context_char = lvim.icons.ui.LineLeft
 lvim.builtin.indentlines.options.show_current_context = true
 lvim.builtin.indentlines.options.show_first_indent_level = true
 lvim.builtin.dap.active = true
-lvim.builtin.illuminate.active = false
+lvim.builtin.illuminate.active = true
 lvim.builtin.autopairs.active = false
-lvim.builtin.nvimtree.setup.view.adaptive_size = true
 lvim.builtin.nvimtree.setup.view.adaptive_size = true
 lvim.builtin.nvimtree.setup.renderer.add_trailing = true
 
@@ -47,8 +44,10 @@ lvim.plugins = {
       }
       require('hop').setup(config)
 
-      lvim.builtin.which_key.mappings["j"] = { "<cmd>HopWord<cr>",
-        "Prepares for jumping anywhere in buffer to beginning of word" }
+      lvim.builtin.which_key.mappings["j"] = {
+        "<cmd>HopWord<cr>",
+        "Prepares for jumping anywhere in buffer to beginning of word"
+      }
       vim.cmd([[hi HopNextKey1 guifg=#ff9900 gui=bold cterm=bold]])
       vim.cmd([[hi HopNextKey2 guifg=#ff9900 gui=bold cterm=bold]])
     end,
@@ -195,20 +194,28 @@ lvim.plugins = {
   },
   {
     "projekt0n/github-nvim-theme",
-    version = "v0.0.7"
+    version = "v0.0.7",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd [[colorscheme github_dark_default]]
+    end
   },
   {
     "theHamsta/nvim-dap-virtual-text",
     opts = {},
   },
   {
-    "jbyuki/one-small-step-for-vimkind",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-    }
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
+    config = function()
+      require"dressing".setup {
+        input = { enabled = false }
+      }
+    end,
   },
   {
-    "stevearc/dressing.nvim",
+    "p00f/clangd_extensions.nvim"
   }
 }
 

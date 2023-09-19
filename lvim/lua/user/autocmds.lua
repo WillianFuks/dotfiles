@@ -30,8 +30,8 @@ lvim.autocommands = {
       pattern = { "*" },
       desc = [[
         Looks for the file "launch.json" either at `cwd` or
-        at `cwd .. ".vscode"`. If if finds, loads its dap
-        config for the given buffer
+        at `cwd .. ".vscode"`. If the file exists, loads its dap
+        config.
       ]],
       callback = function()
         local lvim_utils = require("lvim.utils")
