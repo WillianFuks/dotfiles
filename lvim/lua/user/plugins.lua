@@ -216,6 +216,76 @@ lvim.plugins = {
   },
   {
     "p00f/clangd_extensions.nvim"
+  },
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      {
+        "jbyuki/one-small-step-for-vimkind",
+        -- stylua: ignore
+        keys = {
+          { "<leader>daL", function() require("osv").launch({ port = 8086 }) end, desc = "Adapter Lua Server" },
+          { "<leader>dal", function() require("osv").run_this() end, desc = "Adapter Lua" },
+        },
+        config = function()
+          local dap = require("dap")
+          dap.adapters.nlua = function(callback, config)
+            callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
+          end
+          dap.configurations.lua = {
+            {
+              type = "nlua",
+              request = "attach",
+              name = "Attach to running Neovim instance",
+            },
+          }
+        end,
+      },
+    },
+  },
+  {
+    "LunarVim/primer.nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+  },
+  {
+    "kevinhwang91/nvim-bqf",
+    event = "VeryLazy",
+    config = function()
+        require("bqf").setup {
+        auto_enable = true,
+        magic_window = true,
+        auto_resize_height = false,
+        preview = {
+          auto_preview = false,
+          show_title = true,
+          delay_syntax = 50,
+          wrap = false,
+        },
+        func_map = {
+          tab = "t",
+          openc = "o",
+          drop = "O",
+          split = "s",
+          vsplit = "v",
+          stoggleup = "M",
+          stoggledown = "m",
+          stogglevm = "m",
+          filterr = "f",
+          filter = "F",
+          prevhist = "<",
+          nexthist = ">",
+          sclear = "c",
+          ptoggleitem = "p",
+          ptoggleauto = "a",
+          ptogglemode = "P",
+        },
+      }
+    end
+  },
+  {
+    "MunifTanjim/nui.nvim",
+    event = "VeryLazy",
   }
 }
 
@@ -224,5 +294,6 @@ lvim.builtin.treesitter.matchup.enable = true
 lvim.builtin.treesitter.matchup.disable_virtual_text = false
 lvim.builtin.treesitter.matchup.include_match_words = true
 lvim.builtin.indentlines.options.show_current_context_start = true
-lvim.colorscheme = "github_dark_default"
+-- lvim.colorscheme = "github_dark_default"
+lvim.colorscheme = "primer_dark"
 -- vim.o.background = "dark"

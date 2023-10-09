@@ -1,3 +1,4 @@
+-- duplicated from javascript.lua for now!
 local ok = pcall(function()
   require("dap-vscode-js").setup({
     debugger_path = os.getenv("LUNARVIM_RUNTIME_DIR") .. "/site/pack/lazy/opt/vscode-js-debug",
@@ -10,7 +11,7 @@ end)
 
 assert(ok, "Failed to load dap-vscode-js.")
 
-for _, language in ipairs({ "javascript" }) do
+for _, language in ipairs({ "typescript" }) do
   require("dap").configurations[language] = {
     {
       type = "pwa-node",
