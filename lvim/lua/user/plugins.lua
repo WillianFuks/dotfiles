@@ -64,9 +64,9 @@ lvim.plugins = {
       require("nvim-ts-autotag").setup()
     end,
   },
-  {
-    "mrjones2014/nvim-ts-rainbow",
-  },
+  -- {
+  --   "mrjones2014/nvim-ts-rainbow",
+  -- },
   {
     "norcalli/nvim-colorizer.lua",
     config = function()
@@ -289,7 +289,7 @@ lvim.plugins = {
   }
 }
 
-lvim.builtin.treesitter.rainbow.enable = true
+lvim.builtin.treesitter.rainbow.enable = false
 lvim.builtin.treesitter.matchup.enable = true
 lvim.builtin.treesitter.matchup.disable_virtual_text = false
 lvim.builtin.treesitter.matchup.include_match_words = true

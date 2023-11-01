@@ -3,7 +3,7 @@ require "user.lsp.languages.lua"
 require "user.lsp.languages.sh"
 require "user.lsp.languages.javascript"
 
-lvim.lsp.diagnostics.float.focusable = true
+-- lvim.lsp.diagnostics.float.focusable = true
 
 local code_actions = require "lvim.lsp.null-ls.code_actions"
 local formatters = require "lvim.lsp.null-ls.formatters"
