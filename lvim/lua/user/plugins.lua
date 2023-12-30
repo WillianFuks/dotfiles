@@ -1,10 +1,13 @@
 require "user.plugins.telescope"
 require "user.plugins.dap"
+require "user.plugins.toggleterm"
 
 -- After changing plugin config exit and reopen Lvim.
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
+
 lvim.builtin.terminal.active = true
+lvim.builtin.terminal.direction = 'float'
 
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
@@ -14,24 +17,39 @@ lvim.builtin.treesitter.ensure_installed = {
   "lua",
   "python",
   "typescript",
-  "tsx",
   "css",
   "rust",
   "java",
   "yaml",
 }
-
-lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.treesitter.ignore_install = { "haskell", "tsx" }
 lvim.builtin.treesitter.highlight.enable = true
+lvim.builtin.treesitter.rainbow.enable = false
+lvim.builtin.treesitter.matchup.enable = true
+lvim.builtin.treesitter.matchup.disable = { "tsx" }
+lvim.builtin.treesitter.matchup.disable_virtual_text = false
+lvim.builtin.treesitter.matchup.include_match_words = true
+
+lvim.builtin.indentlines.options.show_current_context_start = true
 lvim.builtin.indentlines.options.use_treesitter = true
 lvim.builtin.indentlines.options.context_char = lvim.icons.ui.LineLeft
 lvim.builtin.indentlines.options.show_current_context = true
 lvim.builtin.indentlines.options.show_first_indent_level = true
+
 lvim.builtin.dap.active = true
+
 lvim.builtin.illuminate.active = true
+
 lvim.builtin.autopairs.active = false
+
 lvim.builtin.nvimtree.setup.view.adaptive_size = true
 lvim.builtin.nvimtree.setup.renderer.add_trailing = true
+
+-- lvim.colorscheme = "github_dark_default"
+lvim.colorscheme = "primer_dark"
+-- vim.o.background = "dark"
+
+lvim.builtin.alpha.dashboard.section.header.val = nil
 
 lvim.plugins = {
   {
@@ -288,12 +306,3 @@ lvim.plugins = {
     event = "VeryLazy",
   }
 }
-
-lvim.builtin.treesitter.rainbow.enable = false
-lvim.builtin.treesitter.matchup.enable = true
-lvim.builtin.treesitter.matchup.disable_virtual_text = false
-lvim.builtin.treesitter.matchup.include_match_words = true
-lvim.builtin.indentlines.options.show_current_context_start = true
--- lvim.colorscheme = "github_dark_default"
-lvim.colorscheme = "primer_dark"
--- vim.o.background = "dark"
