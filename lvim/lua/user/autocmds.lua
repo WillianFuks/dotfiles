@@ -1,5 +1,6 @@
 local Log = require("lvim.core.log")
 local group_general_settings = vim.api.nvim_create_augroup("general_settings", {})
+local _buffer_mappings = vim.api.nvim_create_augroup("buffer_mappings", {})
 local group_dap_settings = vim.api.nvim_create_augroup("dap_settings", {})
 -- Setting formatoptions through `vim.o` doesn"t work as the value gets constantly reseted
 -- so using autocmd to fix it. Now jumping to a new line from a comment shouldn"t automatically
@@ -89,5 +90,14 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     -- let treesitter use bash highlight for zsh files as well
     require("nvim-treesitter.highlight").attach(0, "bash")
+  end,
+})
+
+
+vim.api.nvim_create_autocmd("FileType", {
+  group=_buffer_mappings,
+  pattern = "qf",
+  callback = function()
+    vim.keymap.set("n", "<CR>", "<Cmd>lua require('bqf.qfwin.handler').open(false)<CR> | <Cmd>ccl<CR>", { buffer = true })
   end,
 })

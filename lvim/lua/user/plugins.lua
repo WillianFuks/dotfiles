@@ -26,7 +26,7 @@ lvim.builtin.treesitter.ignore_install = { "haskell", "tsx" }
 lvim.builtin.treesitter.highlight.enable = true
 lvim.builtin.treesitter.rainbow.enable = false
 lvim.builtin.treesitter.matchup.enable = true
-lvim.builtin.treesitter.matchup.disable = { "tsx" }
+lvim.builtin.treesitter.matchup.disable = { "tsx", "cpp" }
 lvim.builtin.treesitter.matchup.disable_virtual_text = false
 lvim.builtin.treesitter.matchup.include_match_words = true
 
