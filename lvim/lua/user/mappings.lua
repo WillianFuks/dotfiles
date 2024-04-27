@@ -26,7 +26,6 @@ lvim.keys.normal_mode["<C-Up>"] = ":resize +2<CR>"
 lvim.keys.normal_mode["<C-Down>"] = ":resize -2<CR>"
 lvim.keys.normal_mode["<C-Left>"] = ":vertical resize +2<CR>"
 lvim.keys.normal_mode["<C-Right>"] = ":vertical resize -2<CR>"
-lvim.keys.normal_mode["E"] = "$"
 lvim.keys.normal_mode["j"] = "gj"
 lvim.keys.normal_mode["k"] = "gk"
 lvim.keys.normal_mode["dE"] = "d$"
@@ -35,12 +34,11 @@ lvim.keys.normal_mode["x"] = '"_x'
 lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
 lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
 lvim.keys.normal_mode["q:"] = "<NOP>"
+lvim.keys.normal_mode["q/"] = "<NOP>"
+lvim.keys.normal_mode["q?"] = "<NOP>"
 
-lvim.keys.visual_mode["B"] = "^"
-lvim.keys.visual_mode["zl"] = "zL"
-lvim.keys.visual_mode["zh"] = "zH"
-lvim.keys.visual_mode["E"] = "$"
 lvim.keys.visual_mode["p"] = '"_dP'
+
 
 lvim.keys.insert_mode["fd"] = "<ESC>"
 
