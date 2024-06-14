@@ -27,7 +27,7 @@ return {
         },
         config = function(_, opts)
           vim.cmd('hi TreesitterContextBottom gui=underline guisp=Grey guibg=#283642')
-          require'treesitter-context'.setup(opts)
+          require('treesitter-context').setup(opts)
         end,
       },
       {
@@ -66,8 +66,14 @@ return {
         enable = true,
         disable = function(_, buf)
           local max_filesize = 100 * 1024 -- 100 KiB
+          local max_lines = 5000
           local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
           if ok and stats and stats.size > max_filesize then
+            return true
+          end
+          local ok_len, file_contents = pcall(vim.fn.readfile, vim.api.nvim_buf_get_name(buf))
+          local file_length = #file_contents
+          if ok_len and file_length and file_length > max_lines then
             return true
           end
         end,
@@ -142,6 +148,6 @@ return {
     },
     config = function()
       require('nvim-ts-autotag').setup()
-    end
+    end,
   },
 }

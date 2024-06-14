@@ -2,7 +2,7 @@ local o = vim.opt
 
 o.number = true
 o.wildignore = { '*.o', '*~', '*.pyc', '*/node_modules/*', '*/.git/*', '*/vendor/*' }
-o.cmdheight = 0
+-- o.cmdheight = 0  -- cmdheight is experimental, as it may break plugins (it did for netrw) then disable for now
 o.mouse = ''
 o.whichwrap:remove({ '<', '>', '[', ']', 'h', 'l', 'b', 's' })
 o.showtabline = 1

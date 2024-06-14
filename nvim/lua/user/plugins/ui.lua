@@ -16,13 +16,13 @@ return {
             local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
 
             return MiniStatusline.combine_groups({
-              { hl = mode_hl, strings = { mode } },
+              -- { hl = mode_hl, strings = { mode } },
               { hl = 'MiniStatuslineDevinfo', strings = { git, diagnostics } },
               '%<', -- Mark general truncate point
               { hl = 'MiniStatuslineFileinfo', strings = { filename } },
               '%=', -- End left alignment
               -- { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
-              { hl = mode_hl, strings = { search, location } },
+              { hl = 'MiniStatuslineFileinfo', strings = { search, location } },
             })
           end,
           inactive = nil,
@@ -37,6 +37,7 @@ return {
   },
   {
     'echasnovski/mini.tabline',
+    enabled = false,
     version = '*',
     opts = {
       show_icons = true,
@@ -53,7 +54,7 @@ return {
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    enabled = false,
+    enabled = true,
     main = 'ibl',
     opts = {
       enabled = true,
@@ -68,7 +69,7 @@ return {
         highlight = { 'IblIndent' },
         smart_indent_cap = true,
         priority = 2,
-        repeat_linebreak = false,
+        repeat_linebreak = true,
       },
       whitespace = {
         highlight = 'IblWhitespace',
@@ -130,7 +131,7 @@ return {
   {
     'echasnovski/mini.indentscope',
     version = '*',
-    enabled = true,
+    enabled = false,
     config = function()
       local opts = {
         draw = {

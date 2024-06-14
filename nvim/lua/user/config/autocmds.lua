@@ -45,3 +45,11 @@ vim.api.nvim_create_autocmd('VimResized', {
     vim.cmd('tabdo wincmd =')
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup('Remove auto commenting', { clear = true }),
+  pattern = "*",
+  callback = function()
+    vim.opt.formatoptions:remove({'c', 'r', 'o' })
+  end,
+})

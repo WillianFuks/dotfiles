@@ -11,6 +11,7 @@ return {
   },
   {
     'echasnovski/mini.files',
+    enabled = true,
     opts = {
       windows = {
         preview = false,
@@ -135,6 +136,7 @@ return {
           mappings = {
             n = {
               ['q'] = require('telescope.actions').close,
+              ['<c-d>'] = require('telescope.actions').delete_buffer
             },
           },
         },
@@ -162,6 +164,7 @@ return {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch [B]uffers' })
+      vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = '[S]earch [M]arks' })
       vim.keymap.set('n', '<leader>ss', builtin.lsp_document_symbols, { desc = 'Goto Symbol' })
       vim.keymap.set('n', '<leader>sa', '<cmd>Telescope aerial<cr>', { desc = '[Search] [A]erial' })
       vim.keymap.set('n', '<leader>sH', '<cmd>Telescope highlights<cr>', { desc = 'Find highlight groups' })
@@ -206,6 +209,7 @@ return {
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
+    enabled = false,
     opts = {
       menu = {
         width = vim.api.nvim_win_get_width(0) - 4,

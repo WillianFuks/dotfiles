@@ -7,12 +7,12 @@ return {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       {
         'j-hui/fidget.nvim',
-        opts = {}
+        opts = {},
       },
       {
         'folke/neodev.nvim',
         enabled = true,
-        opts = {}
+        opts = {},
       },
       {
         'SmiteshP/nvim-navic',
@@ -38,7 +38,7 @@ return {
           prefix = '●',
         },
         float = {
-          source = 'always'
+          source = 'always',
         },
         severity_sort = true,
         signs = {
@@ -74,22 +74,33 @@ return {
               completion = {
                 callSnippet = 'Replace',
               },
-              diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = {
+                disable = { 'missing-fields' },
+                globals = { 'vim' },
+              },
             },
           },
         },
         basedpyright = {
           -- typeCheckingMode = 'standard',
         },
-      },
-      -- return true if you don't want this server to be setup with lspconfig
-      setup = {
-        -- tsserver = function(_, opts)
-        --   require("typescript").setup({ server = opts })
-        --   return true
-        -- end,
-        -- Specify * to use this function as a fallback for any server
-        -- ["*"] = function(server, opts) end,
+        ['eslint-lsp'] = {},
+        ['css-lsp'] = {},
+        jsonls = {
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+          end,
+          settings = {
+            json = {
+              format = {
+                enable = true,
+              },
+              validate = { enable = true },
+            },
+          },
+        },
       },
     },
     config = function(_, opts)
@@ -164,6 +175,7 @@ return {
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       require('mason').setup()
 
@@ -183,11 +195,15 @@ return {
       require('mason-lspconfig').setup({
         handlers = {
           function(server_name)
+            if server_name == 'tsserver' then return end
             local server = opts.servers[server_name] or {}
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
         },
+        ['tsserver'] = function()
+        -- Skip since we use typescript-tools.nvim
+        end,
       })
     end,
   },
@@ -288,17 +304,16 @@ return {
         lua = { 'stylua' },
         python = function(bufnr)
           if require('conform').get_formatter_info('ruff_format', bufnr).available then
-            return { 'ruff_format' }
+            return { 'ruff_format', 'isort' }
           else
             return { 'isort', 'flake8' }
           end
         end,
         sh = { 'shfmt' },
-        -- javascript = { { "prettierd", "prettier" } },
+        typescript = { { 'prettierd', 'prettier' } },
       },
     },
   },
-
   {
     'stevearc/aerial.nvim',
     event = 'VeryLazy',
@@ -324,5 +339,10 @@ return {
     keys = {
       { '<leader>a', '<cmd>AerialToggle<cr>', desc = '[A]erial (Symbols)' },
     },
+  },
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
   },
 }
