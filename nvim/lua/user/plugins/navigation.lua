@@ -106,6 +106,19 @@ return {
         end,
       })
 
+      -- Close on <Esc>
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'minifiles',
+        callback = function(args)
+          vim.keymap.set(
+            'n',
+            '<Esc>',
+            ':lua require"mini.files".close()<CR>',
+            { buffer = args.buf_id, noremap = true, silent = true }
+          )
+        end,
+      })
+
       -----------------------------
       -- change color
       -----------------------------
