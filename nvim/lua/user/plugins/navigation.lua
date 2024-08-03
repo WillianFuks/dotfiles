@@ -223,8 +223,8 @@ return {
     end,
   },
   {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
     enabled = false,
     opts = {
       menu = {
@@ -237,31 +237,31 @@ return {
     keys = function()
       local keys = {
         {
-          "<leader>H",
+          '<leader>H',
           function()
-            require("harpoon"):list():add()
+            require('harpoon'):list():add()
           end,
-          desc = "Harpoon File",
+          desc = 'Harpoon File',
         },
         {
-          "<leader>h",
+          '<leader>h',
           function()
-            local harpoon = require("harpoon")
+            local harpoon = require('harpoon')
             harpoon.ui:toggle_quick_menu(harpoon:list())
           end,
-          desc = "Harpoon Quick Menu",
+          desc = 'Harpoon Quick Menu',
         },
       }
       for i = 1, 5 do
         table.insert(keys, {
-          "<leader>" .. i,
+          '<leader>' .. i,
           function()
-            require("harpoon"):list():select(i)
+            require('harpoon'):list():select(i)
           end,
-          desc = "Harpoon to File " .. i,
+          desc = 'Harpoon to File ' .. i,
         })
       end
       return keys
     end,
-  }
+  },
 }
