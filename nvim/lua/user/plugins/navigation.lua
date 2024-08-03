@@ -149,7 +149,10 @@ return {
           mappings = {
             n = {
               ['q'] = require('telescope.actions').close,
-              ['<c-d>'] = require('telescope.actions').delete_buffer
+              ['<c-d>'] = require('telescope.actions').delete_buffer,
+            },
+            i = {
+              ['<c-d>'] = require('telescope.actions').delete_buffer,
             },
           },
         },
