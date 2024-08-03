@@ -50,6 +50,7 @@ return {
       require('mini.files').setup(opts)
 
       local show_dotfiles = true
+      ---@diagnostic disable:unused-local
       local filter_show = function(fs_entry)
         return true
       end
@@ -87,7 +88,7 @@ return {
       local map_split = function(buf_id, lhs, direction)
         local rhs = function()
           local new_target_window
-          vim.api.nvim_win_call(MiniFiles.get_target_window(), function()
+          vim.api.nvim_win_call(MiniFiles.get_target_window() or 0, function()
             vim.cmd(direction .. ' split')
             new_target_window = vim.api.nvim_get_current_win()
           end)
