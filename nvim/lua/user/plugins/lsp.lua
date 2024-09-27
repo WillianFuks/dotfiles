@@ -62,6 +62,43 @@ return {
         timeout_ms = nil,
       },
       servers = {
+
+        yamlls = {
+          -- Have to add this for yamlls to understand that we support line folding
+          capabilities = {
+            textDocument = {
+              foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+              },
+            },
+          },
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.yaml.schemas = vim.tbl_deep_extend(
+              'force',
+              new_config.settings.yaml.schemas or {},
+              require('schemastore').yaml.schemas()
+            )
+          end,
+          settings = {
+            redhat = { telemetry = { enabled = false } },
+            yaml = {
+              keyOrdering = false,
+              format = {
+                enable = true,
+              },
+              validate = true,
+              schemaStore = {
+                -- Must disable built-in schemaStore support to use
+                -- schemas from SchemaStore.nvim plugin
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = '',
+              },
+            },
+          },
+        },
         lua_ls = {
           settings = {
             Lua = {
@@ -90,7 +127,7 @@ return {
           -- lazy-load schemastore when needed
           on_new_config = function(new_config)
             new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+            vim.list_extend(new_config.settings.json.schemas, require('schemastore').json.schemas())
           end,
           settings = {
             json = {
@@ -141,6 +178,10 @@ return {
           end, 'Show line diagnostics')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+          if client.name == 'yamlls' then
+            client.server_capabilities.documentFormattingProvider = true
+          end
 
           -- code lens
           if opts.codelens.enabled and vim.lsp.codelens then
@@ -195,14 +236,16 @@ return {
       require('mason-lspconfig').setup({
         handlers = {
           function(server_name)
-            if server_name == 'tsserver' then return end
+            if server_name == 'tsserver' then
+              return
+            end
             local server = opts.servers[server_name] or {}
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
         },
         ['tsserver'] = function()
-        -- Skip since we use typescript-tools.nvim
+          -- Skip since we use typescript-tools.nvim
         end,
       })
     end,
@@ -310,10 +353,11 @@ return {
           end
         end,
         sh = { 'shfmt' },
-        typescript = { { 'prettierd', 'prettier' } },
-        javascript = { { 'prettierd', 'prettier' } },
-        javascriptreact = { { 'prettierd', 'prettier' } },
-        typescriptreact = { { 'prettierd', 'prettier' } },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        yaml = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
