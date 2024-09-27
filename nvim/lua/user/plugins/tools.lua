@@ -1,23 +1,23 @@
 return {
   {
-    "echasnovski/mini.diff",
-    event = "VeryLazy",
+    'echasnovski/mini.diff',
+    event = 'VeryLazy',
     keys = {
       {
-        "<leader>go",
+        '<leader>go',
         function()
-          require("mini.diff").toggle_overlay(0)
+          require('mini.diff').toggle_overlay(0)
         end,
-        desc = "Toggle mini.diff overlay",
+        desc = 'Toggle mini.diff overlay',
       },
     },
     opts = {
       view = {
         style = 'sign',
         signs = {
-          add = "▎",
-          change = "▎",
-          delete = "",
+          add = '▎',
+          change = '▎',
+          delete = '',
         },
       },
       mappings = {
@@ -42,13 +42,12 @@ return {
       vim.cmd('highlight MiniDiffOverAdd guifg=#56d364')
       vim.cmd('highlight MiniDiffOverChange guifg=#e3b341')
       vim.cmd('highlight MiniDiffOverDelete guifg=#f85149')
-
-    end
+    end,
   },
   {
     {
       'akinsho/toggleterm.nvim',
-      version = "*",
+      version = '*',
       opts = {
         size = 20,
         open_mapping = [[<c-\>]],
@@ -57,7 +56,7 @@ return {
         on_close = nil, -- function to run when the terminal closes
         on_stdout = nil, -- callback for processing output on stdout
         on_stderr = nil, -- callback for processing output on stderr
-        on_exit =nil, -- function to run when terminal process exits
+        on_exit = nil, -- function to run when terminal process exits
         hide_numbers = true, -- hide the number column in toggleterm buffers
         shade_filetypes = {},
         autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
@@ -78,7 +77,7 @@ return {
           enabled = false,
           name_formatter = function(term) --  term: Terminal
             return term.name
-          end
+          end,
         },
       },
       config = function(_, opts)
@@ -87,7 +86,7 @@ return {
           desc = 'Add mappings to navigate in terminals.',
           group = vim.api.nvim_create_augroup('toggleterm maps', { clear = true }),
           callback = function()
-            local opts = {buffer = 0}
+            local opts = { buffer = 0 }
             vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
             vim.keymap.set('t', 'fd', [[<C-\><C-n>]], opts)
             vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
