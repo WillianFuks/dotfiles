@@ -74,6 +74,9 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
+# Avoids focus from moving between monitors when running <Alt> h/l
+focus_wrapping workspace
+
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
