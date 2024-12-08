@@ -196,7 +196,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         # status_command i3status
-    status_command i3status --config ~/.config/i3/i3status.conf
+    status_command i3status --config ~/.config/i3status/config
     position top
     # Disable all tray icons
     tray_output none
