@@ -305,9 +305,11 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 #interactive screenshot by pressing printscreen
-bindsym Print exec gnome-screenshot -i 
+# bindsym Print exec gnome-screenshot -i
 #crop-area screenshot by pressing Mod + printscreen
-bindsym $mod+Print exec gnome-screenshot -a
+# bindsym $mod+Print exec gnome-screenshot -a
+
+bindsym Print exec flameshot gui
 
 
 # gaps inner 0px
@@ -343,3 +345,6 @@ mode "$mode_redshift" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+
+exec --no-startup-id flameshot
