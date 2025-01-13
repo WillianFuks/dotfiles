@@ -62,7 +62,7 @@ return {
         timeout_ms = nil,
       },
       servers = {
-
+        terraformls = {},
         yamlls = {
           -- Have to add this for yamlls to understand that we support line folding
           capabilities = {
