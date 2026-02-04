@@ -40,5 +40,17 @@ return {
       -- vim.cmd('colorscheme github_dark_default')
       -- vim.cmd('colorscheme github_dark_high_contrast')
     end,
-  }
+  },
+  {
+    'navarasu/onedark.nvim',
+    priority = 1000, -- make sure to load this before all the other start plugins
+    enabled = false,
+    config = function()
+      require('onedark').setup({
+        style = 'warm',
+      })
+      -- Enable theme
+      require('onedark').load()
+    end,
+  },
 }

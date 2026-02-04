@@ -9,7 +9,8 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+# set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -281,7 +282,7 @@ set_from_resource $white2 color15 #ffffff
 # For managing monitors
 for_window [class="Arandr"] floating enable
 
-# Hide the mouse after some time 
+# Hide the mouse after some time
 exec --no-startup-id unclutter
 
 # Hide the bar
@@ -310,6 +311,7 @@ bindsym XF86AudioPrev exec playerctl previous
 # bindsym $mod+Print exec gnome-screenshot -a
 
 bindsym Print exec flameshot gui
+bindsym Shift+Print exec flameshot screen
 
 
 # gaps inner 0px

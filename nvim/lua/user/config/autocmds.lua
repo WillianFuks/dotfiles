@@ -53,3 +53,14 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.formatoptions:remove({'c', 'r', 'o' })
   end,
 })
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function()
+    local view = vim.fn.winsaveview()
+    local search = vim.fn.getreg('/')
+    vim.cmd([[%s/\s\+$//e]])
+    vim.fn.setreg('/', search)
+    vim.fn.winrestview(view)
+  end,
+})

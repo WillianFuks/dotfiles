@@ -1,7 +1,36 @@
 return {
   {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      current_line_blame = false,
+    },
+    keys = {
+      -- Hunk navigation
+      { "]h", function() require("gitsigns").next_hunk() end, desc = "Git: next hunk" },
+      { "[h", function() require("gitsigns").prev_hunk() end, desc = "Git: prev hunk" },
+
+      -- Hunk actions
+      { "<leader>hp", function() require("gitsigns").preview_hunk() end, desc = "Git: preview hunk" },
+      { "<leader>hr", function() require("gitsigns").reset_hunk() end,   desc = "Git: reset hunk" },
+      { "<leader>hs", function() require("gitsigns").stage_hunk() end,   desc = "Git: stage hunk" },
+
+      -- Blame
+      { "<leader>hb", function() require("gitsigns").blame_line({ full = true }) end, desc = "Git: blame line" },
+
+      -- Base switching (review vs normal)
+      { "<leader>gbo", function() require("gitsigns").change_base("origin/main") end, desc = "Git: base = origin/main" },
+      { "<leader>gbm", function() require("gitsigns").change_base("origin/master") end, desc = "Git: base = origin/master" },
+      { "<leader>gbl", function() require("gitsigns").reset_base() end,               desc = "Git: base = local (reset)" },
+
+      -- Optional: diff view for current file
+      { "<leader>gd", function() require("gitsigns").diffthis() end, desc = "Git: diff this file" },
+    },
+  },
+  {
     'echasnovski/mini.diff',
     event = 'VeryLazy',
+    enabled = false,
     keys = {
       {
         '<leader>go',
