@@ -350,3 +350,5 @@ mode "$mode_redshift" {
 
 
 exec --no-startup-id flameshot
+# replace Alt with Win so it won't conflict with tmux
+exec --no-startup-id setxkbmap -option altwin:swap_alt_win
