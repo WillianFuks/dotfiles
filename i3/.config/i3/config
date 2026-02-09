@@ -34,7 +34,8 @@ exec --no-startup-id sleep 1; xset s off
 # exec --no-startup-id sleep 1; xset -dpms
 # exec --no-startup-id sleep 1; xset s noblank
 
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# apparently this line is keeping auto-locking alive
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -352,3 +353,6 @@ mode "$mode_redshift" {
 exec --no-startup-id flameshot
 # replace Alt with Win so it won't conflict with tmux
 exec --no-startup-id setxkbmap -option altwin:swap_alt_win
+
+# screen is still going blank due dpms being enabled so trying to force its shutdown
+exec_always --no-startup-id sh -c "sleep 10; xset -dpms; xset s off; xset s noblank"
