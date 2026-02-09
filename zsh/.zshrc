@@ -83,13 +83,12 @@ plugins=(
   git
   zsh-autosuggestions
   dirhistory
-  zsh-syntax-highlighting
   k
 )
 
-# from https://superuser.com/questions/446594/separate-up-arrow-lookback-for-local-and-global-zsh-history
-bindkey "${key[Up]}" up-line-or-local-history
-bindkey "${key[Down]}" down-line-or-local-history
+# Just follow chatGPT
+bindkey '^[[A' up-line-or-local-history
+bindkey '^[[B' down-line-or-local-history
 
 up-line-or-local-history() {
     zle set-local-history 1
@@ -137,8 +136,14 @@ source $ZSH/oh-my-zsh.sh
 
 # Attempt to load nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm() { unset -f nvm node npm npx; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm "$@"; }
+node() { nvm >/dev/null 2>&1; command node "$@"; }
+npm()  { nvm >/dev/null 2>&1; command npm "$@"; }
+npx()  { nvm >/dev/null 2>&1; command npx "$@"; }
+
 
 export PATH="$HOME/.local/bin:$PATH"
 export TERMINAL=alacritty
+
+# keep highlighting loading safe
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

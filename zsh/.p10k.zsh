@@ -1,0 +1,1 @@
+Documents/repos/dotfiles/zsh/.p10k.zsh
