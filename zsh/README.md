@@ -14,3 +14,6 @@
       ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone --depth=1 https://github.com/supercrabtree/k \
       ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/k
+
+    # powerfonts
+    sudo apt install fonts-nerd-fonts

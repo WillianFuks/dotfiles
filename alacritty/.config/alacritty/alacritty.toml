@@ -41,6 +41,7 @@ mods = "Control|Shift"
 # text = "0xebdbb2"
 
 # [font]
+# normal = { family = "JetBrainsMono Nerd Font" }
 # size = 13.0
 
 # [font.bold]
