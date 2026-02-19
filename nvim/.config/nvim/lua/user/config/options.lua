@@ -56,11 +56,14 @@ o.fillchars = {
 }
 -- Folding
 o.foldlevel = 99
-o.foldmethod = 'indent'
+o.foldmethod = 'expr'
+-- o.foldmethod = ''
+o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+-- o.foldexpr = '' -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
+o.foldenable = false
 
 -- From LunarVim
 o.clipboard = 'unnamedplus' -- allows neovim to access the system clipboard
-o.foldexpr = '' -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
 o.hlsearch = true -- highlight all matches on previous search pattern
 o.swapfile = false -- creates a swapfile
 o.timeoutlen = 500 -- time to wait for a mapped sequence to complete (in milliseconds)
@@ -69,4 +72,4 @@ o.tabstop = 2 -- insert 2 spaces for a tab
 o.showcmd = false
 o.ruler = false
 
-vim.cmd('filetype plugin indent on') -- Enable all filetype plugins
+-- vim.cmd('filetype plugin indent on') -- Enable all filetype plugins -- no longer necessary os of nvim 0.11

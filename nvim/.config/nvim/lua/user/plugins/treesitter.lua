@@ -1,59 +1,77 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 
     opts = {
-      auto_install = true,
-      highlight = {
-        enable = true,
-        disable = function(_, buf)
-          local max_filesize = 100 * 1024
-          local max_lines = 5000
-          local name = vim.api.nvim_buf_get_name(buf)
-          local ok, stats = pcall(vim.loop.fs_stat, name)
-          if ok and stats and stats.size > max_filesize then return true end
-          local ok_len, lines = pcall(vim.fn.readfile, name)
-          if ok_len and lines and #lines > max_lines then return true end
-          return false
-        end,
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<C-S-space>",
-        },
-      },
-      indent = { enable = true },
-      ensure_installed = {
+      parsers = {
         "bash","c","diff","html","javascript","jsdoc","json","jsonc","lua","luadoc","luap",
         "markdown","markdown_inline","python","query","regex","toml","tsx","typescript",
         "vim","vimdoc","xml","yaml",
       },
+
+      -- performance guards
+      max_filesize = 100 * 1024,
+      max_lines = 5000,
+
+      -- If true, also enable treesitter-based indentexpr (experimental upstream)
+      enable_indentexpr = true,
     },
 
     config = function(_, opts)
-      require("nvim-treesitter.install").prefer_git = true
-      vim.opt.foldmethod = "expr"
-      vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-      vim.opt.foldenable = false
-      require("nvim-treesitter.configs").setup(opts)
-    end,
+      local ts = require("nvim-treesitter")
 
-    dependencies = {
-      { "nvim-treesitter/nvim-treesitter-textobjects", event = { "BufReadPost", "BufNewFile" } },
-      { "nvim-treesitter/nvim-treesitter-context", enabled = false },
-    },
+      ts.setup({
+        install_dir = vim.fn.stdpath("data") .. "/site",
+      })
+
+      ts.install(opts.parsers)
+
+      -- Enable folds globally
+      vim.opt.foldmethod = "expr"
+      vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.opt.foldenable = false
+
+      vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "FileType" }, {
+        callback = function(ev)
+          local buf = ev.buf
+          local name = vim.api.nvim_buf_get_name(buf)
+          if name == "" then return end
+
+          -- filesize guard
+          local ok_stat, stat = pcall(vim.loop.fs_stat, name)
+          if ok_stat and stat and stat.size and stat.size > opts.max_filesize then
+            return
+          end
+
+          -- line-count guard (avoids reading huge buffers into Lua)
+          local line_count = vim.api.nvim_buf_line_count(buf)
+          if line_count > opts.max_lines then
+            return
+          end
+
+          pcall(vim.treesitter.start, buf)
+
+          if opts.enable_indentexpr then
+            pcall(function()
+              vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end)
+          end
+        end,
+      })
+    end,
   },
 
   {
     "windwp/nvim-ts-autotag",
-    ft = { "html","javascript","typescript","javascriptreact","typescriptreact","svelte","vue","tsx","jsx","xml","php","markdown","astro" },
+    ft = {
+      "html","javascript","typescript","javascriptreact","typescriptreact",
+      "svelte","vue","tsx","jsx","xml","php","markdown","astro",
+    },
     opts = {},
-    config = function() require("nvim-ts-autotag").setup() end,
-  },}
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+}
