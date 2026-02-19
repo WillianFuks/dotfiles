@@ -141,6 +141,9 @@ node() { nvm >/dev/null 2>&1; command node "$@"; }
 npm()  { nvm >/dev/null 2>&1; command npm "$@"; }
 npx()  { nvm >/dev/null 2>&1; command npx "$@"; }
 
+# Java stuff
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export PATH="$JAVA_HOME/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 export TERMINAL=alacritty
