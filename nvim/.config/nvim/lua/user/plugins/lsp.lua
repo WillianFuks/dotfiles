@@ -119,7 +119,18 @@ return {
           },
         },
         basedpyright = {
-          -- typeCheckingMode = 'standard',
+          settings = {
+            basedpyright = {
+              analysis = {
+                typeCheckingMode = 'basic',
+                diagnosticSeverityOverrides = {
+                  reportUnknownVariableType = 'none',
+                  reportUnknownMemberType = 'none',
+                  reportUnknownLambdaType = 'none',
+                },
+              },
+            },
+          },
         },
         ['eslint-lsp'] = {},
         ['css-lsp'] = {},
