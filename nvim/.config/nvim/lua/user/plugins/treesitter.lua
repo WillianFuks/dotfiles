@@ -26,7 +26,8 @@ return {
         install_dir = vim.fn.stdpath("data") .. "/site",
       })
 
-      ts.install(opts.parsers)
+      -- seems to be causing trouble, everytime when opening nvim it forces install of every parser
+      -- ts.install(opts.parsers)
 
       -- Enable folds globally
       vim.opt.foldmethod = "expr"
