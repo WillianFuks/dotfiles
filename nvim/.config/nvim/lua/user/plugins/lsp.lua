@@ -122,7 +122,8 @@ return {
           settings = {
             basedpyright = {
               analysis = {
-                typeCheckingMode = 'basic',
+                typeCheckingMode = 'off',
+                diagnosticMode = "off",
                 diagnosticSeverityOverrides = {
                   reportUnknownVariableType = 'none',
                   reportUnknownMemberType = 'none',
@@ -245,9 +246,16 @@ return {
       end
 
       require('mason-lspconfig').setup({
+        -- removing basedpyright for now due noise in files
+        automatic_enable = {
+          exclude = { "basedpyright" },
+        },
         handlers = {
           function(server_name)
             if server_name == 'tsserver' then
+              return
+            end
+            if server_name == "basedpyright" then
               return
             end
             local server = opts.servers[server_name] or {}
@@ -356,13 +364,13 @@ return {
       notify_on_error = true,
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = function(bufnr)
-          if require('conform').get_formatter_info('ruff_format', bufnr).available then
-            return { 'ruff_format', 'isort' }
-          else
-            return { 'isort', 'flake8' }
-          end
-        end,
+        -- python = function(bufnr)
+        --   if require('conform').get_formatter_info('ruff_format', bufnr).available then
+        --     return { 'ruff_format', 'isort' }
+        --   else
+        --     return { 'isort', 'flake8' }
+        --   end
+        -- end,
         sh = { 'shfmt' },
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
