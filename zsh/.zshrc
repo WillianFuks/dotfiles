@@ -150,3 +150,4 @@ export TERMINAL=alacritty
 
 # keep highlighting loading safe
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
