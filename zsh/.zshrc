@@ -134,12 +134,10 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Attempt to load nvm
+# Load nvm
 export NVM_DIR="$HOME/.nvm"
-nvm() { unset -f nvm node npm npx; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm "$@"; }
-node() { nvm >/dev/null 2>&1; command node "$@"; }
-npm()  { nvm >/dev/null 2>&1; command npm "$@"; }
-npx()  { nvm >/dev/null 2>&1; command npx "$@"; }
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
 # Java stuff
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
@@ -150,4 +148,5 @@ export TERMINAL=alacritty
 
 # keep highlighting loading safe
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.npm-global/bin:$PATH"
