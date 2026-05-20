@@ -131,7 +131,29 @@ return {
   {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-    build = 'cd app && yarn install',
+    build = function(plugin)
+      local app_dir = plugin.dir .. '/app'
+
+      local function run_install(cmd)
+        local result = vim.system(cmd, { cwd = app_dir, text = true }):wait()
+        return result.code == 0
+      end
+
+      if vim.fn.executable('yarn') == 1 and run_install({ 'yarn', 'install' }) then
+        return
+      end
+
+      if run_install({ 'npm', 'install' }) then
+        return
+      end
+
+      vim.schedule(function()
+        vim.notify(
+          'markdown-preview.nvim: both yarn install and npm install failed',
+          vim.log.levels.ERROR
+        )
+      end)
+    end,
     init = function()
       vim.g.mkdp_filetypes = { 'markdown' }
     end,
