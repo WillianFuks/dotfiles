@@ -202,8 +202,8 @@ return {
     end,
   },
   {
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
+    'smoka7/hop.nvim',
+    version = '*', -- Use the latest tagged version
     keys = {
       {
         '<leader>j',

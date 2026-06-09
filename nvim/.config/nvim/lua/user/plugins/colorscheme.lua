@@ -1,5 +1,16 @@
 return {
   {
+    'folke/tokyonight.nvim',
+    enabled = true,
+    priority = 1000,
+    config = function()
+      require('tokyonight').setup({
+        style = 'storm', -- or 'night', 'storm', 'day', 'moon'
+      })
+      vim.cmd('colorscheme tokyonight')
+    end,
+  },
+  {
     'LunarVim/primer.nvim',
     enabled = false,
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -20,7 +31,7 @@ return {
   },
   {
     'rebelot/kanagawa.nvim',
-    enabled = true,
+    enabled = false,
     config = function()
       require('kanagawa').setup()
       vim.cmd('colorscheme kanagawa-wave')
