@@ -86,6 +86,9 @@ plugins=(
   k
 )
 
+# Keep autosuggestion text muted and restore Ctrl+E to accept it.
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
 # Just follow chatGPT
 bindkey '^[[A' up-line-or-local-history
 bindkey '^[[B' down-line-or-local-history
@@ -104,6 +107,15 @@ down-line-or-local-history() {
 zle -N down-line-or-local-history
 
 source $ZSH/oh-my-zsh.sh
+
+bindkey -M emacs '^E' autosuggest-accept
+bindkey -M viins '^E' autosuggest-accept
+
+# Word navigation with Option + B/F.
+bindkey -M emacs '^[b' backward-word
+bindkey -M emacs '^[f' forward-word
+bindkey -M viins '^[b' backward-word
+bindkey -M viins '^[f' forward-word
 
 # User configuration
 

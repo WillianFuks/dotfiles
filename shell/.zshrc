@@ -87,6 +87,9 @@ plugins=(
   k
 )
 
+# Keep autosuggestion text muted and restore Ctrl+E to accept it.
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
 # from https://superuser.com/questions/446594/separate-up-arrow-lookback-for-local-and-global-zsh-history
 
 setopt sharehistory
@@ -113,6 +116,15 @@ bindkey '^[[1;5A' up-line-or-local-history    # [CTRL] + Cursor up
 bindkey '^[[1;5B' down-line-or-local-history  # [CTRL] + Cursor down
 
 source $ZSH/oh-my-zsh.sh
+
+bindkey -M emacs '^E' autosuggest-accept
+bindkey -M viins '^E' autosuggest-accept
+
+# Word navigation with Option + B/F.
+bindkey -M emacs '^[b' backward-word
+bindkey -M emacs '^[f' forward-word
+bindkey -M viins '^[b' backward-word
+bindkey -M viins '^[f' forward-word
 
 # User configuration
 
