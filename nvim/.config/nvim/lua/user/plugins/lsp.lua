@@ -267,6 +267,41 @@ return {
           -- Skip since we use typescript-tools.nvim
         end,
       })
+
+      -- Run gopls in Docker so Go does not need to be installed on the host.
+      -- The project is mounted at the same absolute path so LSP file URIs match.
+      vim.lsp.config('gopls', {
+        cmd = function(dispatchers, config)
+          local root = config.root_dir
+          return vim.lsp.rpc.start({
+            'docker',
+            'run',
+            '--rm',
+            '-i',
+            '-v', root .. ':' .. root,
+            '-v', 'nvim-gopls-go-cache:/go',
+            '-w', root,
+            'golang:1.26',
+            'sh',
+            '-c',
+            'go install golang.org/x/tools/gopls@v0.23.0 && exec /go/bin/gopls',
+          }, dispatchers, { cwd = root })
+        end,
+        filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+        root_dir = function(bufnr, on_dir)
+          local filename = vim.api.nvim_buf_get_name(bufnr)
+          local root = vim.fs.root(filename, { 'go.work', 'go.mod', '.git' })
+          on_dir(root)
+        end,
+      })
+      vim.lsp.enable('gopls')
+
+      -- nvim-lspconfig skips its legacy commands on Neovim 0.12+, which has :lsp.
+      if vim.fn.exists(':LspInfo') ~= 2 then
+        vim.api.nvim_create_user_command('LspInfo', function()
+          vim.cmd('checkhealth vim.lsp')
+        end, { desc = 'Show LSP status' })
+      end
     end,
   },
   { -- Autocompletion
