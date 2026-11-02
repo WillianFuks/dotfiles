@@ -119,11 +119,15 @@ return {
           },
         },
         basedpyright = {
+          -- Keep navigation and completion without publishing noisy diagnostics.
+          handlers = {
+            ['textDocument/publishDiagnostics'] = function() end,
+          },
           settings = {
             basedpyright = {
               analysis = {
                 typeCheckingMode = 'off',
-                diagnosticMode = "off",
+                diagnosticMode = 'openFilesOnly',
                 diagnosticSeverityOverrides = {
                   reportUnknownVariableType = 'none',
                   reportUnknownMemberType = 'none',
@@ -245,17 +249,16 @@ return {
         return orig_util_open_floating_preview(contents, syntax, win_opts, ...)
       end
 
+      -- mason-lspconfig v2 uses vim.lsp.config instead of setup handlers.
+      local python_server = vim.deepcopy(opts.servers.basedpyright)
+      python_server.capabilities = capabilities
+      vim.lsp.config('basedpyright', python_server)
+
       require('mason-lspconfig').setup({
-        -- removing basedpyright for now due noise in files
-        automatic_enable = {
-          exclude = { "basedpyright" },
-        },
+        automatic_enable = true,
         handlers = {
           function(server_name)
             if server_name == 'tsserver' then
-              return
-            end
-            if server_name == "basedpyright" then
               return
             end
             local server = opts.servers[server_name] or {}
